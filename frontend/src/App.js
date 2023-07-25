@@ -2,6 +2,9 @@ import logo from './logo.svg';
 import './App.css';
 import { useEffect, useState} from 'react';
 import{useLocalStorage} from './util/useLocalStorage'
+import { Route, Routes } from 'react-router-dom';
+import Dashboard from './Components/Dashboard';
+import HomePage from './Components/Homepage';
 
 function App() {
 
@@ -47,9 +50,10 @@ function App() {
 
   //show on the interface
   return(
-    <div className='App'>
-      <div>JWT value is {jwt}</div>
-    </div>
+    <Routes>
+      <Route path='/dashboard' element={<Dashboard/>}/> 
+      <Route path='/' element={<HomePage/>}/>
+    </Routes>
   );
 
 
