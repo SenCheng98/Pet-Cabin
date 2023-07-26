@@ -2,9 +2,12 @@ import logo from './logo.svg';
 import './App.css';
 import { useEffect, useState} from 'react';
 import{useLocalStorage} from './util/useLocalStorage'
-import { Route, Routes } from 'react-router-dom';
-import Dashboard from './Components/Dashboard';
+import { Navigate, Route, Routes } from 'react-router-dom';
+
+import Login from './Components/Login';
 import HomePage from './Components/Homepage';
+import Dashboard from './Components/Dashboard';
+import PrivateRoute from './PrivateRoute/PrivateRoute';
 
 function App() {
 
@@ -51,7 +54,12 @@ function App() {
   //show on the interface
   return(
     <Routes>
-      <Route path='/dashboard' element={<Dashboard/>}/> 
+      <Route path='/login' element={<Login/>}/>
+      <Route path='/dashboard' element={
+        <PrivateRoute>
+          <Dashboard/>
+        </PrivateRoute>
+      }/> 
       <Route path='/' element={<HomePage/>}/>
     </Routes>
   );
