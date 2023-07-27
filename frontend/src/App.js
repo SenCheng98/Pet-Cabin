@@ -1,13 +1,15 @@
 import logo from './logo.svg';
 import './App.css';
 import { useEffect, useState} from 'react';
-import{useLocalStorage} from './util/useLocalStorage'
-import { Navigate, Route, Routes } from 'react-router-dom';
+import{useLocalStorage} from './util/useLocalStorage';
+import {Route, Routes } from 'react-router-dom';
 
 import Login from './Components/Login';
 import HomePage from './Components/Homepage';
 import Dashboard from './Components/Dashboard';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
+import NewHomaPage from './Components/NewHomePage';
+
 
 function App() {
 
@@ -18,7 +20,7 @@ function App() {
   //A function that updates the state.
 
   //intial value is ""
-  const [jwt, setJwt] = useLocalStorage("","jwt");
+  const [jwt, setJwt] = useLocalStorage("jwt","");
 
   
 
@@ -26,29 +28,8 @@ function App() {
   //useEffect(<function>, <dependency>)
   useEffect(() => {
 
-    if(!jwt){
-      //declare a variable, cannot be changed
-      const reqBody = {
-      "username" : "A",
-      "password" : "A"
-      };
+    
 
-      //hashmap, key + value
-      fetch("api/auth/login",{
-        headers: {
-          "Content-Type" : "application/json",
-        },
-        method: "post",
-        body: JSON.stringify(reqBody),
-      }).then((response) => Promise.all([response.json(),response.headers]))
-        .then(([body,headers]) => {
-          setJwt(headers.get("authorization"));
-          console.log(jwt);
-          console.log(body);
-          console.log(`jwt is:  ${jwt}`);
-        });
-    }
-      
   }, []);  //when [sth] is not same as original value of sth, re-fetch
 
   //show on the interface
@@ -56,16 +37,14 @@ function App() {
     <Routes>
       <Route path='/login' element={<Login/>}/>
       <Route path='/dashboard' element={
-        <PrivateRoute>
+        <PrivateRoute> 
           <Dashboard/>
         </PrivateRoute>
       }/> 
-      <Route path='/' element={<HomePage/>}/>
+      <Route path='/' element={<NewHomaPage/>}/>
     </Routes>
   );
 
-
-  
 
 
 
