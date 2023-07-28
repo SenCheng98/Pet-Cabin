@@ -4,11 +4,14 @@ import { useEffect, useState} from 'react';
 import{useLocalStorage} from './util/useLocalStorage';
 import {Route, Routes } from 'react-router-dom';
 
-import Login from './Components/Login';
-import HomePage from './Components/Homepage';
-import Dashboard from './Components/Dashboard';
-import PrivateRoute from './PrivateRoute/PrivateRoute';
-import NewHomaPage from './Components/NewHomePage';
+import Login from './components/login';
+import HomePage from './components/homepage';
+import Dashboard from './components/dashboard';
+import PrivateRoute from './privateRoute';
+import NewHomaPage from './components/newHomePage';
+import PostAds from './components/postAds';
+import Signup from './components/signup';
+
 
 
 function App() {
@@ -35,13 +38,20 @@ function App() {
   //show on the interface
   return(
     <Routes>
+      <Route path='/' element={<NewHomaPage/>}/>
       <Route path='/login' element={<Login/>}/>
+      <Route path='/signup' element={<Signup/>}/>
       <Route path='/dashboard' element={
         <PrivateRoute> 
           <Dashboard/>
         </PrivateRoute>
       }/> 
-      <Route path='/' element={<NewHomaPage/>}/>
+      <Route path='/postAds' element={
+        <PrivateRoute> 
+          <PostAds/>
+        </PrivateRoute>
+      }/> 
+      
     </Routes>
   );
 

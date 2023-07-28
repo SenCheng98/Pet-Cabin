@@ -668,14 +668,16 @@ h6 {
     background: var(--color-base);
     background-position: center;
     background-size: cover;
-    background-image: url('../Image/banner_73.jpg');
+    background-image: url('../images/banner_73.jpg');
 }
 
 .site-nav-item {
     display: inline-block;
-    padding: 5px 10px;
-    color: #fff;
-    opacity: 0.7;
+    padding: 5px 15px;
+    color: #000000;
+    opacity: 1;
+    font-size: 3rem;
+    
 }
 
 .site-nav-item:hover {
@@ -684,7 +686,7 @@ h6 {
 }
 
 .site-nav-icon {
-    height: 15px;
+    height: 25px;
     margin: -5px 0 0;
 }
 

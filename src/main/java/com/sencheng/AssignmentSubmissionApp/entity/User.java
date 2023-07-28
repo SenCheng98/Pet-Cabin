@@ -21,7 +21,7 @@ public class User implements UserDetails {
     private String password;
     private String fullname;
     private String email;
-    private String address;
+    private String postcode;
     private String phone;
     private LocalDate cohortStartDate;
 

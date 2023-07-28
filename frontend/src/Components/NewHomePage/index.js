@@ -3,7 +3,9 @@ import PropTypes from "prop-types";
 
 
 // Styles
-import "../../NewCSS/app.css";
+import "../../newCSS/app.css";
+import twitterIcon from "../../images/icons/twitter.svg"
+import facebookIcon from "../../images/icons/facebook.svg"
 
 /**
  * Main layout component
@@ -56,10 +58,11 @@ const DefaultLayout = () => {
                                     >
                                         <img
                                             className="site-nav-icon"
-                                            src="/images/icons/twitter.svg"
+                                            src={twitterIcon}
                                             alt="Twitter"
                                         />
                                     </a>
+
                                 {/* )} */}
                                 {/* {site.facebook && ( */}
                                     <a
@@ -70,23 +73,35 @@ const DefaultLayout = () => {
                                     >
                                         <img
                                             className="site-nav-icon"
-                                            src="/images/icons/facebook.svg"
+                                            src={facebookIcon}
                                             alt="Facebook"
                                         />
                                     </a>
                                 {/* )} */}
-                                {/* <a
+                                <a
                                     className="site-nav-item"
-                                    href={`https://feedly.com/i/subscription/feed/${config.siteUrl}/rss/`}
-                                    target="_blank"
+                                    href="/postAds"
+                                    target="_self"
                                     rel="noopener noreferrer"
-                                >
-                                    <img
+                                >PostAds
+                                    {/* <img
                                         className="site-nav-icon"
                                         src="/images/icons/rss.svg"
                                         alt="RSS Feed"
-                                    />
-                                </a> */}
+                                    /> */}
+                                </a>
+                                <a
+                                    className="site-nav-item"
+                                    href="/login"
+                                    target="_self"
+                                    rel="noopener noreferrer"
+                                >LOGIN
+                                    {/* <img
+                                        className="site-nav-icon"
+                                        src="/images/icons/rss.svg"
+                                        alt="RSS Feed"
+                                    /> */}
+                                </a>
                             </div>
                         </div>
 
@@ -154,37 +169,6 @@ const DefaultLayout = () => {
     </>;
 };
 
-DefaultLayout.propTypes = {
-    children: PropTypes.node.isRequired,
-    bodyClass: PropTypes.string,
-    isHome: PropTypes.bool,
-    data: PropTypes.shape({
-        file: PropTypes.object,
-        allGhostSettings: PropTypes.object.isRequired,
-    }).isRequired,
-};
 
-// const DefaultLayoutSettingsQuery = (props) => (
-//     <StaticQuery
-//         query={graphql`query GhostSettings {
-//   allGhostSettings {
-//     edges {
-//       node {
-//         ...GhostSettingsFields
-//       }
-//     }
-//   }
-//   file(relativePath: {eq: "ghost-icon.png"}) {
-//     childImageSharp {
-//       gatsbyImageData(width: 30, height: 30, layout: FIXED)
-//     }
-//   }
-// }
-// `}
-//         render={(data) => <DefaultLayout data={data} {...props} />}
-//     />
-// );
-
-// export default DefaultLayoutSettingsQuery;
 
 export default DefaultLayout;

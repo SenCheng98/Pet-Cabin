@@ -51,4 +51,17 @@ public class AuthController {
         }
     }
 
+//    @PostMapping("/sign-up")
+//    public ResponseEntity<?> login(@RequestBody AuthCredentialsRequest request) {
+//
+//
+//    }
+
+    @PostMapping("/sign-up")
+    public Boolean signUp(@RequestBody User user){
+
+        System.out.println("get request");
+        return true;
+    }
+
 }
