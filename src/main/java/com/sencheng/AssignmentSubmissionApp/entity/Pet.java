@@ -4,19 +4,23 @@ package com.sencheng.AssignmentSubmissionApp.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Date;
 
 
 @Entity //will create table in database called assignment(based on Class name)
 @Data
-public class Assignment {
+public class Pet {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //indicate persistent provider must assign primary key
     private Long id;
-    private String status;
-    private String githubUrl;
-    private String branch;
-    private String codeReviewUrl;
+    private String AdvertStatus;
+    private String breed;
+    private Integer price;
+    private String description;
+    private String imageUrl;
+    private String postedTime;
+
     //TODO: private User assignTo;
 
     @ManyToOne(optional = false)

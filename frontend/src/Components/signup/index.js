@@ -12,6 +12,8 @@ const Signup = () => {
     const[phone,setPhone] = useState("");
     const[postcode,setPostcode] = useState("");
 
+    console.log(username)
+
     function sendSignupReq() {
 
         console.log("sending");
@@ -36,12 +38,12 @@ const Signup = () => {
         .then((response) => {
             if(response.status === 200){
                 window.location.href = "/login";
-                console.log(response);
-                return  Promise.all([response.json(),response.headers]);
+                console.log(response.json());
             }else{
                 return Promise.reject("Please sign up again!");
             } 
         })
+        .then((data) => console.log(data))
 
     }
 
@@ -56,35 +58,71 @@ const Signup = () => {
                     <h3>Sign Up</h3>
 
                     <div className="mb-3">
+                        <label>fullname</label>
+                        <input 
+                            type="text" 
+                            className="form-control" 
+                            placeholder="Fullname"
+                            id='Fullname'
+                            value={fullname}
+                            onChange={(event) => setFullname(event.target.value)}/>
+                    </div>
+
+                    <div className="mb-3">
                         <label>Username</label>
-                        <input type="text" className="form-control" placeholder="Username"/>
+                        <input 
+                            type="text" 
+                            className="form-control" 
+                            placeholder="Username"
+                            id='Username'
+                            value={username}
+                            onChange={(event) => setUsername(event.target.value)}/>
                     </div>
 
                     <div className="mb-3">
                         <label>Password</label>
                         <input
-                        type="password"
-                        className="form-control"
-                        placeholder="Enter password"
-                        />
+                            type="password"
+                            className="form-control"
+                            placeholder="Enter password"
+                            id='Password'
+                            value={password}
+                            onChange={(event) => setPassword(event.target.value)}/>
                     </div>
 
                     <div className="mb-3">
-                        <label>Email address</label>
+                        <label>Email</label>
                         <input
-                        type="email"
-                        className="form-control"
-                        placeholder="Enter email"
-                        />
+                            type="email"
+                            className="form-control"
+                            placeholder="Enter email"
+                            id='Email'
+                            value={email}
+                            onChange={(event) => setEmail(event.target.value)}/>
                     </div>
 
                     <div className="mb-3">
                         <label>Phone number</label>
                         <input
-                        type="phone"
-                        className="form-control"
-                        placeholder="Enter phone"
-                        />
+                            type="phone"
+                            className="form-control"
+                            placeholder="Enter phone"
+                            id='Phone'
+                            value={phone}
+                            onChange={(event) => setPhone(event.target.value)}/>
+                
+                    </div>
+
+                    <div className="mb-3">
+                        <label>Postcode</label>
+                        <input
+                            type="postcode"
+                            className="form-control"
+                            placeholder="Postcode"
+                            id='Postcode'
+                            value={postcode}
+                            onChange={(event) => setPostcode(event.target.value)}/>
+                
                     </div>
 
                     <div className="d-grid">

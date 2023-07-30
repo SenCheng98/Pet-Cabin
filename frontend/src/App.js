@@ -1,5 +1,5 @@
 import logo from './logo.svg';
-import './App.css';
+// import './App.css';
 import { useEffect, useState} from 'react';
 import{useLocalStorage} from './util/useLocalStorage';
 import {Route, Routes } from 'react-router-dom';
@@ -8,9 +8,10 @@ import Login from './components/login';
 import HomePage from './components/homepage';
 import Dashboard from './components/dashboard';
 import PrivateRoute from './privateRoute';
-import NewHomaPage from './components/newHomePage';
 import PostAds from './components/postAds';
 import Signup from './components/signup';
+import PetInfo from './components/petInfo';
+import PetsView from './components/PetsView';
 
 
 
@@ -38,9 +39,11 @@ function App() {
   //show on the interface
   return(
     <Routes>
-      <Route path='/' element={<NewHomaPage/>}/>
+      <Route path='/' element={<HomePage/>}/>
       <Route path='/login' element={<Login/>}/>
       <Route path='/signup' element={<Signup/>}/>
+      <Route path='/petInfo' element={<PetInfo/>}/>
+
       <Route path='/dashboard' element={
         <PrivateRoute> 
           <Dashboard/>
@@ -49,6 +52,11 @@ function App() {
       <Route path='/postAds' element={
         <PrivateRoute> 
           <PostAds/>
+        </PrivateRoute>
+      }/> 
+      <Route path='/petsView' element={
+        <PrivateRoute> 
+          <PetsView/>
         </PrivateRoute>
       }/> 
       

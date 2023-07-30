@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useLocalStorage } from "../../util/useLocalStorage";
 
 import './login.css';
+import '../../newCSS/app.css'
 import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 const Login = () => {

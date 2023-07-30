@@ -3,6 +3,7 @@ package com.sencheng.AssignmentSubmissionApp.controller;
 
 import com.sencheng.AssignmentSubmissionApp.dto.AuthCredentialsRequest;
 import com.sencheng.AssignmentSubmissionApp.entity.User;
+import com.sencheng.AssignmentSubmissionApp.service.UserDetailsServiceImpl;
 import com.sencheng.AssignmentSubmissionApp.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -12,6 +13,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -24,6 +26,9 @@ public class AuthController {
     private AuthenticationManager authenticationManager;
     @Autowired
     private JwtUtil jwtUtil;
+
+    @Autowired
+    UserDetailsServiceImpl userDetailsService;
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody AuthCredentialsRequest request) {
@@ -60,8 +65,9 @@ public class AuthController {
     @PostMapping("/sign-up")
     public Boolean signUp(@RequestBody User user){
 
-        System.out.println("get request");
+        userDetailsService.save(user);
         return true;
     }
+
 
 }
