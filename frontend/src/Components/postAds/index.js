@@ -1,6 +1,7 @@
 import React, { Component, useState } from 'react'
 import { useLocalStorage } from '../../util/useLocalStorage';
 
+import ajaxService from '../../service/fetchService';
 
 
 
@@ -14,9 +15,6 @@ const PostAds = () => {
 
     function sendPetInfo() {
 
-        
-
-        console.log("sending");
         //declare a variable, cannot be changed
         const reqBody = {
             "breed" : breed,
@@ -24,20 +22,12 @@ const PostAds = () => {
             "description" : description,
 
         };
-    
-        //hashmap, key + value
-        fetch("api/pet/postAds",{
-            headers: {
-            "Content-Type" : "application/json",
-            Authorization : `Bearer ${jwt}`,
-            },
-            method: "post",
-            body: JSON.stringify(reqBody),
-        })
+        
+        ajaxService("api/pet/postAds", "post", reqBody, jwt)
         .then((response) => {
-            if(response.status === 200){
-                window.location.href = "/";
-                console.log(response.json());
+            console.log(response);
+            if(response){
+                window.location.href = "/petsView";
             }else{
                 return Promise.reject("Please post again!");
                 

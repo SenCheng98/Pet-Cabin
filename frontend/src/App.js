@@ -4,14 +4,14 @@ import { useEffect, useState} from 'react';
 import{useLocalStorage} from './util/useLocalStorage';
 import {Route, Routes } from 'react-router-dom';
 
-import Login from './components/login';
-import HomePage from './components/homepage';
-import Dashboard from './components/dashboard';
-import PrivateRoute from './privateRoute';
-import PostAds from './components/postAds';
-import Signup from './components/signup';
-import PetInfo from './components/petInfo';
-import PetsView from './components/PetsView';
+import Login from './components/Login/index';
+import HomePage from './components/Homepage/index';
+import Dashboard from './components/Dashboard/index';
+import PrivateRoute from './privateRoute/index';
+import PostAds from './components/PostAds/index';
+import Signup from './components/Signup/index';
+import PetInfo from './components/petInfo/index';
+import PetsView from './components/PetsView/index';
 
 
 

@@ -4,6 +4,7 @@ import { useLocalStorage } from "../../util/useLocalStorage";
 import './login.css';
 import '../../newCSS/app.css'
 import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import ajaxService from "../../service/fetchService";
 
 const Login = () => {
 
@@ -15,13 +16,13 @@ const Login = () => {
     console.log(username);
     function sendLoginReq() {
 
-        console.log("sending");
         //declare a variable, cannot be changed
         const reqBody = {
             "username" : username,
             "password" : password,
         };
     
+        
         //hashmap, key + value
         fetch("api/auth/login",{
             headers: {
@@ -31,6 +32,7 @@ const Login = () => {
             body: JSON.stringify(reqBody),
         })
         .then((response) => {
+
             if(response.status === 200)
                 return  Promise.all([response.json(),response.headers]);
             else return Promise.reject("Invaild credential");

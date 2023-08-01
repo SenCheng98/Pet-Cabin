@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useLocalStorage } from "../../util/useLocalStorage"
-
+import ajaxService from "../../service/fetchService"
 
 
 const PetsView = () => {
@@ -13,20 +13,10 @@ const PetsView = () => {
     useEffect(() => {
         console.log(pets);
 
-        fetch("api/pet", {
-            headers: {
-                "Content-Type" : "application/json",
-                Authorization : `Bearer ${jwt}`,
-            },
-            method: "get",
-        })
+        ajaxService("api/pet", "get", null, jwt)
         .then((response) => {
-            if(response.status === 200){
-                return response.json();
-            }
-        })
-        .then((response) => setPets(response));
- 
+            setPets(response);
+        });
 
     }, []);
 
