@@ -5,6 +5,7 @@ import './login.css';
 import '../../newCSS/app.css'
 import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import ajaxService from "../../service/fetchService";
+import { Button, Col, Form, Row } from "react-bootstrap";
 
 const Login = () => {
 
@@ -56,58 +57,64 @@ const Login = () => {
 
         <div className="auth-wrapper">
             <div className="auth-inner">
-                <form>
-                    <h3>Login</h3>
+                <Form>
+                <div style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>
+                    <h1> Login </h1>
+                </div>
             
-                    <div className="mb-3">
-                        <label>Username</label>
-                        <input
-                        id="username"
-                        type="username"
-                        value={username}
-                        className="form-control"
-                        placeholder="Enter username"
-                        onChange={(event) => setUsername(event.target.value)}/> 
-                
-                    </div>
+                    <Form.Group>
+                        <Form.Label className="col-form-label-lg  mb-1  fw-bold">Username</Form.Label>
+                        <Form.Control
+                            type="username"
+                            placeholder="Enter username"
+                            size="lg"
+                            className="mb-2"
+
+                            value={username}
+                            onChange={(event) => setUsername(event.target.value)}/> 
+                    </Form.Group>
             
-                    <div className="mb-3">
-                        <label htmlFor="password">Password</label>
-                        <input
-                        id ="password" 
-                        type="password"
-                        value={password} 
-                        className="form-control"
-                        placeholder="Enter password"
-                        onChange={(event) => setPassword(event.target.value)}/>
-                    
-                    </div>
+                    <Form.Group>
+                        <Form.Label className="col-form-label-lg  mb-1  fw-bold">Password</Form.Label>
+                        <Form.Control
+                            type="password"
+                            placeholder="Enter password"
+                            size="lg"
+                            className="mb-4"
+                            value={password} 
+                            onChange={(event) => setPassword(event.target.value)}/>
+                    </Form.Group>
             
-                    <div className="mb-3">
-                        <div className="custom-control custom-checkbox">
-                        <input
-                            type="checkbox"
-                            className="custom-control-input"
-                            id="customCheck1"
-                        />
-                        <label className="custom-control-label" htmlFor="customCheck1">
-                            Remember me
-                        </label>
-                        </div>
-                    </div>
+                    <Form.Group className="mb-3">
+                        {['checkbox'].map((type) => (
+                            <div key={`default-${type}`}>
+                                <Form.Check // prettier-ignore
+                                    type={type}
+                                    id={`default-${type}`}
+                                    label="Remember me"
+                                />
+                            </div>
+                        ))}
+                    </Form.Group>
             
-                    <div className="d-grid">
-                        <button id ="submit" type="button" onClick={() => sendLoginReq()} className="btn btn-primary">
-                            Login
-                        </button>
-                    </div>
-                    <p className="forgot-password text-right">
+                    <Row >
+                        <Button 
+                            as="input"
+                            value="Login"
+                            variant = "primary"
+                            size="lg"
+                            onClick={() => sendLoginReq()} 
+                            >
+                        </Button>
+                    </Row>
+
+                    <p className="forgot-password text-right">do not have account?
                         <a href="signup">sign up </a>
                     </p>
                     <p className="forgot-password text-right">
                         Forgot <a href="#">password?</a>
                     </p>
-                </form>
+                </Form>
             </div>
         </div>
 
