@@ -8,6 +8,8 @@ import twitterIcon from "../../images/icons/twitter.svg"
 import facebookIcon from "../../images/icons/facebook.svg"
 import rss from "../../images/icons/rss.svg"
 import avatar from "../../images/icons/avatar.svg"
+import { Card, Button, Row, Col} from "react-bootstrap";
+import TemporaryImg from "../../images/login-background.jpg"
 
 
 
@@ -138,7 +140,53 @@ const HomePage = () => {
                 <main className="site-main">
                     {/* All the main content gets inserted here, index.js, post.js */}
                     {/* {Mainbody} */}
-                    <section className="post-feed">
+
+                <Row className="my-3">
+                    <Col md={4}>   
+                        <Card style={{ width: '40rem' }}>
+                            <Card.Img variant="top" src={TemporaryImg} />
+                            <Card.Body>
+                                <Card.Title>Card Title</Card.Title>
+                                <Card.Text>
+                                Some quick example text to build on the card title and make up the
+                                bulk of the card's content.
+                                </Card.Text>
+                                <Button variant="primary">Go somewhere</Button>
+                            </Card.Body>
+                        </Card>
+                    </Col>
+
+                    <Col md={4}>   
+                        <Card style={{ width: '40rem' }}>
+                            <Card.Img variant="top" src={TemporaryImg} />
+                            <Card.Body>
+                                <Card.Title>Card Title</Card.Title>
+                                <Card.Text>
+                                Some quick example text to build on the card title and make up the
+                                bulk of the card's content.
+                                </Card.Text>
+                                <Button variant="primary">Go somewhere</Button>
+                            </Card.Body>
+                        </Card>
+                    </Col>
+                    <Col md={4}>   
+                        <Card style={{ width: '40rem' }}>
+                            <Card.Img variant="top" src={TemporaryImg} />
+                            <Card.Body>
+                                <Card.Title>Card Title</Card.Title>
+                                <Card.Text>
+                                Some quick example text to build on the card title and make up the
+                                bulk of the card's content.
+                                </Card.Text>
+                                <Button variant="primary">Go somewhere</Button>
+                            </Card.Body>
+                        </Card>
+                    </Col>
+                    </Row>
+
+
+
+                    {/* <section className="post-feed">
                         <a className="post-card" href="/">
                             <header className="post-card-header">
                                 <div className="post-card-image"></div>
@@ -206,9 +254,7 @@ const HomePage = () => {
                             </footer>
                         </a>
 
-
-
-                    </section>
+                    </section> */}
                 </main>
             </div>
 
