@@ -23,7 +23,7 @@ function ajaxService(url, reqMethod, reqBody, jwt){
             console.log(response);
             return response.json();
         }
-    })
+    });
 
 }
 

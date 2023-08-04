@@ -31,4 +31,9 @@ public class PetController {
 
         return ResponseEntity.ok(petService.findByUser(user));
     }
+    @GetMapping("/getAll")
+    public ResponseEntity<?> getAllPets(){
+        System.out.println("get in");
+        return ResponseEntity.ok(petService.findAll());
+    }
 }

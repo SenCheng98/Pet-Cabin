@@ -8,8 +8,12 @@ import twitterIcon from "../../images/icons/twitter.svg"
 import facebookIcon from "../../images/icons/facebook.svg"
 import rss from "../../images/icons/rss.svg"
 import avatar from "../../images/icons/avatar.svg"
-import { Card, Button, Row, Col} from "react-bootstrap";
+import { Card, Button, Row, Col } from "react-bootstrap";
 import TemporaryImg from "../../images/login-background.jpg"
+
+import { useState, useEffect } from "react";
+import ajaxService from "../../service/fetchService";
+import { useLocalStorage } from "../../util/useLocalStorage";
 
 
 
@@ -26,13 +30,27 @@ const HomePage = () => {
     const twitterUrl = "https://twitter.com";
     const facebookUrl = "https://www.facebook.com";
 
-    return <>
-        {/* <Helmet>
-            <html lang={site.lang} />
-            <style type="text/css">{`${site.codeinjection_styles}`}</style>
-            <body className={bodyClass} />
-        </Helmet> */}
+    const [pets, setPets] = useState([]);
+    const [cardsPerRow, setCardsPerRow] = useState(3);
+    const [jwt, setJwt] = useLocalStorage("jwt", "")
 
+    useEffect(() => {
+
+        ajaxService("api/pet/getAll", "get", null, null)
+            .then((response) => {
+                setPets(response);
+            });
+
+    }, []);
+
+    const groupCards = [];
+
+    for (let i = 0; i < pets.length; i = i + cardsPerRow) {
+        groupCards.push(pets.slice(i, i + cardsPerRow));
+    }
+
+
+    return (
         <div className="viewport">
             <div className="viewport-top">
                 {/* The main header section on top of the screen */}
@@ -141,120 +159,26 @@ const HomePage = () => {
                     {/* All the main content gets inserted here, index.js, post.js */}
                     {/* {Mainbody} */}
 
-                <Row className="my-3">
-                    <Col md={4}>   
-                        <Card style={{ width: '40rem' }}>
-                            <Card.Img variant="top" src={TemporaryImg} />
-                            <Card.Body>
-                                <Card.Title>Card Title</Card.Title>
-                                <Card.Text>
-                                Some quick example text to build on the card title and make up the
-                                bulk of the card's content.
-                                </Card.Text>
-                                <Button variant="primary">Go somewhere</Button>
-                            </Card.Body>
-                        </Card>
-                    </Col>
+                    <div style={{ margin: "2em" }}>
+                        <div
+                            className="d-grid gap-5"
+                            style={{ gridTemplateColumns: "repeat(auto-fit, 45rem)" }}>
 
-                    <Col md={4}>   
-                        <Card style={{ width: '40rem' }}>
-                            <Card.Img variant="top" src={TemporaryImg} />
-                            <Card.Body>
-                                <Card.Title>Card Title</Card.Title>
-                                <Card.Text>
-                                Some quick example text to build on the card title and make up the
-                                bulk of the card's content.
-                                </Card.Text>
-                                <Button variant="primary">Go somewhere</Button>
-                            </Card.Body>
-                        </Card>
-                    </Col>
-                    <Col md={4}>   
-                        <Card style={{ width: '40rem' }}>
-                            <Card.Img variant="top" src={TemporaryImg} />
-                            <Card.Body>
-                                <Card.Title>Card Title</Card.Title>
-                                <Card.Text>
-                                Some quick example text to build on the card title and make up the
-                                bulk of the card's content.
-                                </Card.Text>
-                                <Button variant="primary">Go somewhere</Button>
-                            </Card.Body>
-                        </Card>
-                    </Col>
-                    </Row>
-
-
-
-                    {/* <section className="post-feed">
-                        <a className="post-card" href="/">
-                            <header className="post-card-header">
-                                <div className="post-card-image"></div>
-                                <div className="post-card-tags"></div>
-                                <h2 className="post-card-title">pet breed</h2>
-                            </header>
-                            <section className="post-card-excerpt">Description</section>
-                            <footer className="post-card-footer">
-                                <span></span>
-                            </footer>
-                        </a>
-                        <a className="post-card" href="/">
-                            <header className="post-card-header">
-                                <div className="post-card-image"></div>
-                                <div className="post-card-tags"></div>
-                                <h2 className="post-card-title">pet breed</h2>
-                            </header>
-                            <section className="post-card-excerpt">Description</section>
-                            <footer className="post-card-footer">
-                                <span></span>
-                            </footer>
-                        </a>
-                        <a className="post-card" href="/">
-                            <header className="post-card-header">
-                                <div className="post-card-image"></div>
-                                <div className="post-card-tags"></div>
-                                <h2 className="post-card-title">pet breed</h2>
-                            </header>
-                            <section className="post-card-excerpt">Description</section>
-                            <footer className="post-card-footer">
-                                <span></span>
-                            </footer>
-                        </a>
-                        <a className="post-card" href="/">
-                            <header className="post-card-header">
-                                <div className="post-card-image"></div>
-                                <div className="post-card-tags"></div>
-                                <h2 className="post-card-title">pet breed</h2>
-                            </header>
-                            <section className="post-card-excerpt">Description</section>
-                            <footer className="post-card-footer">
-                                <span></span>
-                            </footer>
-                        </a>
-                        <a className="post-card" href="/">
-                            <header className="post-card-header">
-                                <div className="post-card-image"></div>
-                                <div className="post-card-tags"></div>
-                                <h2 className="post-card-title">pet breed</h2>
-                            </header>
-                            <section className="post-card-excerpt">Description</section>
-                            <footer className="post-card-footer">
-                                <span></span>
-                            </footer>
-                        </a>
-                        <a className="post-card" href="/">
-                            <header className="post-card-header">
-                                <div className="post-card-image"></div>
-                                <div className="post-card-tags"></div>
-                                <h2 className="post-card-title">pet breed</h2>
-                            </header>
-                            <section className="post-card-excerpt">Description</section>
-                            <footer className="post-card-footer">
-                                <span></span>
-                            </footer>
-                        </a>
-
-                    </section> */}
+                            {pets ? (pets.map((pet) => (
+                                <Card
+                                    key={pet.id}
+                                    style={{ width: '35rem' }}
+                                    className="mx-auto">
+                                    <Card.Img variant="top" src={TemporaryImg} />
+                                    <Card.Body>
+                                        <Card.Title>{pet.breed}</Card.Title>
+                                        <Card.Text>{pet.price}</Card.Text>
+                                        <Card.Text>{pet.description}</Card.Text>
+                                    </Card.Body>
+                                </Card>
+                            ))) : (<div></div>)}
+                        </div>
+                    </div>
                 </main>
             </div>
 
@@ -284,7 +208,7 @@ const HomePage = () => {
                 </footer>
             </div>
         </div>
-    </>;
+    )
 };
 
 
