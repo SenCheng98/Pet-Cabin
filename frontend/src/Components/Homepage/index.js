@@ -124,6 +124,15 @@ const HomePage = () => {
                                     />
                                     Login
                                 </a>
+                                <div 
+                                    className="d-flex justify-content-end site-nav-item"
+                                    style={{cursor: "pointer"}}
+                                    onClick={() => {
+                                        setJwt(null);
+                                        window.location.href = "/login";
+                                    }}>
+                                    Logout
+                                </div>
                             </div>
                         </div>
 

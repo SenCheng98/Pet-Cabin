@@ -1,5 +1,6 @@
 package com.sencheng.AssignmentSubmissionApp.service;
 
+import com.sencheng.AssignmentSubmissionApp.entity.MyUserDetails;
 import com.sencheng.AssignmentSubmissionApp.entity.User;
 import com.sencheng.AssignmentSubmissionApp.repository.UserRepo;
 import com.sencheng.AssignmentSubmissionApp.util.MyPasswordEncoder;
@@ -12,13 +13,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.Option;
-import java.util.Optional;
-
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
+//the UserDetailsService interface is used by other class in Spring.
+//The benefit of use this interface is we can define our own way  to retrieve userDetails only by using @Bean
 
     @Autowired
     private UserRepo userRepo;
@@ -28,13 +28,15 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String username)
+            throws UsernameNotFoundException {
+        User user = userRepo.findByUsername(username);
 
-        Optional<User> optionalUser = userRepo.findByUsername(username);
+        if (user == null) {
+            throw new UsernameNotFoundException("Could not find user");
+        }
 
-
-        //If a value is present, returns the value, otherwise throws an exception
-        return optionalUser.orElseThrow(() ->new UsernameNotFoundException("Invalid credentials"));
+        return new MyUserDetails(user);
     }
 
     public void save(User user){
@@ -42,4 +44,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         user.setPassword(myPasswordEncoder.encodePassword(user.getPassword()));
         userRepo.save(user);
     }
+
+
 }

@@ -2,6 +2,7 @@ package com.sencheng.AssignmentSubmissionApp.controller;
 
 
 import com.sencheng.AssignmentSubmissionApp.dto.AuthCredentialsRequest;
+import com.sencheng.AssignmentSubmissionApp.entity.MyUserDetails;
 import com.sencheng.AssignmentSubmissionApp.entity.User;
 import com.sencheng.AssignmentSubmissionApp.service.UserDetailsServiceImpl;
 import com.sencheng.AssignmentSubmissionApp.util.JwtUtil;
@@ -42,15 +43,16 @@ public class AuthController {
                             )
                     );
 
-            User user = (User) authenticate.getPrincipal();
+            //User user = (User) authenticate.getPrincipal();
+            MyUserDetails myUserDetails = (MyUserDetails) authenticate.getPrincipal();
 
             //return a token
             return ResponseEntity.ok()
                     .header(
                             HttpHeaders.AUTHORIZATION,
-                            jwtUtil.generateToken(user)
+                            jwtUtil.generateToken(myUserDetails)
                     )
-                    .body(user);
+                    .body(myUserDetails);
         } catch (BadCredentialsException ex) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
