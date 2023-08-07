@@ -4,14 +4,14 @@ import { useEffect, useState} from 'react';
 import{useLocalStorage} from './util/useLocalStorage';
 import {Route, Routes } from 'react-router-dom';
 
-import Login from './components/Login/index';
-import HomePage from './components/Homepage/index';
-import Dashboard from './components/Dashboard/index';
+import Login from './pages/Login/index';
+import HomePage from './pages/Homepage/index';
+import Dashboard from './pages/Dashboard/index';
 import PrivateRoute from './privateRoute/index';
-import PostAds from './components/PostAds/index';
-import Signup from './components/Signup/index';
-import PetInfo from './components/petInfo/index';
-import PetsView from './components/PetsView/index';
+import PostAds from './pages/PostAds/index';
+import Signup from './pages/Signup/index';
+import PetInfo from './pages/petInfo/index';
+import PetsView from './pages/PetsView/index';
 
 import jwt_decode from "jwt-decode"
 
