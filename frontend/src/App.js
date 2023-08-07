@@ -13,7 +13,8 @@ import Signup from './pages/Signup/index';
 import PetInfo from './pages/petInfo/index';
 import PetsView from './pages/PetsView/index';
 
-import jwt_decode from "jwt-decode"
+
+import getRolesFromJwt from './util/getRolesFromJwt';
 
 
 
@@ -28,23 +29,8 @@ function App() {
 
   //intial value is ""
   const [jwt, setJwt] = useLocalStorage("jwt","");
-  const [roles, setRoles] = useState(getRolesFromJwt());
+  const [roles, setRoles] = useState(getRolesFromJwt(jwt));
   
-  function getRolesFromJwt(){
-
-    if(jwt){
-
-      const decodedJwt = jwt_decode(jwt);
-      console.log(decodedJwt); 
-      return decodedJwt.authority;
-    }else{
-      return [];
-    }
-    
-
-  }
-
-  console.log(roles);
 
   //通过使用useEffect钩子，您可以在函数组件中执行副作用逻辑，该逻辑在每次渲染时都会触发（默认情况下），或者在特定依赖项发生变化时触发。
   //useEffect(<function>, <dependency>)
@@ -55,17 +41,7 @@ function App() {
   //show on the interface
   return(
     <Routes>
-      <Route path='/' element={
-        roles.find((role) => role.authority  === "ADMIN") ? (
-          <PrivateRoute> 
-            <Dashboard/>
-          </PrivateRoute>
-        ) : (
-          <PrivateRoute> 
-            <HomePage/>
-          </PrivateRoute>)
-      }/>
-
+      <Route path='/' element={<HomePage/>}/>
       <Route path='/login' element={<Login/>}/>
       <Route path='/signup' element={<Signup/>}/>
       <Route path='/petInfo' element={<PetInfo/>}/>
