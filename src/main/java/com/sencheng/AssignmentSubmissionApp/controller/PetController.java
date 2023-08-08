@@ -11,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 
 @RestController
 @RequestMapping("/api/pet")
@@ -33,7 +35,15 @@ public class PetController {
     }
     @GetMapping("/getAll")
     public ResponseEntity<?> getAllPets(){
-        System.out.println("get in");
+
         return ResponseEntity.ok(petService.findAll());
+    }
+
+    @GetMapping("/getPetDetails/{id}")
+    public ResponseEntity<?> getPetDetails(@PathVariable Long id){
+
+        System.out.println("getting petDetails... id=" + id);
+        Optional<Pet> pet = petService.findById(id);
+        return ResponseEntity.ok(pet);
     }
 }

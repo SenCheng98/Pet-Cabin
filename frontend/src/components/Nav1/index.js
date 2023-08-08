@@ -7,6 +7,7 @@ import avatar from "../../images/icons/avatar.svg"
 import { useLocalStorage } from "../../util/useLocalStorage";
 import getRolesFromJwt from "../../util/getRolesFromJwt";
 import { useState } from "react";
+import getUserInfoFromJwt from "../../util/getUserInfoFromJwt";
 
 
 const Nav1 = () => {
@@ -16,7 +17,9 @@ const Nav1 = () => {
 
     const [jwt, setJwt] = useLocalStorage("jwt", "");
     const [roles, setRoles] = useState(getRolesFromJwt(jwt));
+    const [username, setUsername] = useState(getUserInfoFromJwt(jwt));
 
+    console.log(username);
     console.log(roles);
 
 
@@ -114,7 +117,7 @@ const Nav1 = () => {
                                 setJwt(null);
                                 window.location.href = "/";
                             }}>
-                            Logout
+                            Logout({username})
                         </a>
                     )}
 

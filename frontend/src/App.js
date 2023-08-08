@@ -10,8 +10,8 @@ import Dashboard from './pages/Dashboard/index';
 import PrivateRoute from './privateRoute/index';
 import PostAds from './pages/PostAds/index';
 import Signup from './pages/Signup/index';
-import PetInfo from './pages/petInfo/index';
 import PetsView from './pages/PetsView/index';
+import PetDetails from './pages/PetDetails/index';
 
 
 import getRolesFromJwt from './util/getRolesFromJwt';
@@ -44,7 +44,7 @@ function App() {
       <Route path='/' element={<HomePage/>}/>
       <Route path='/login' element={<Login/>}/>
       <Route path='/signup' element={<Signup/>}/>
-      <Route path='/petInfo' element={<PetInfo/>}/>
+      <Route path='/petDetails/:id' element={<PetDetails/>}/>
 
       <Route path='/dashboard' element={
         <PrivateRoute> 

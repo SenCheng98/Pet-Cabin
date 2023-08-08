@@ -4,7 +4,7 @@ import TemporaryImg from "../../images/login-background.jpg"
 
 import { useState, useEffect } from "react";
 import ajaxService from "../../service/fetchService";
-import { useLocalStorage } from "../../util/useLocalStorage";
+import { Link } from "react-router-dom";
 
 const Mainbody = () => {
 
@@ -29,6 +29,7 @@ const Mainbody = () => {
 
     return (
 
+
         <div style={{ margin: "2em" }}>
             <div
                 className="d-grid gap-5"
@@ -39,12 +40,14 @@ const Mainbody = () => {
                         key={pet.id}
                         style={{ width: '35rem' }}
                         className="mx-auto">
-                        <Card.Img variant="top" src={TemporaryImg} />
-                        <Card.Body>
-                            <Card.Title>{pet.breed}</Card.Title>
-                            <Card.Text>{pet.price}</Card.Text>
-                            <Card.Text>{pet.description}</Card.Text>
-                        </Card.Body>
+                        <Link to={`/petDetails/${pet.id}`}>
+                            <Card.Img variant="top" src={TemporaryImg} />
+                            <Card.Body>
+                                <Card.Title>{pet.breed}</Card.Title>
+                                <Card.Text>{pet.price}</Card.Text>
+                                <Card.Text>{pet.description}</Card.Text>
+                            </Card.Body>
+                        </Link>
                     </Card>
                 ))) : (<div></div>)}
             </div>

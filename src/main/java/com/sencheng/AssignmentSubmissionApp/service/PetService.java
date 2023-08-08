@@ -6,9 +6,11 @@ import com.sencheng.AssignmentSubmissionApp.repository.PetsRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.Option;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -36,5 +38,9 @@ public class PetService {
 
     public List<Pet> findAll(){
         return petsRepo.findAll();
+    }
+
+    public Optional<Pet> findById(Long id){
+        return petsRepo.findById(id);
     }
 }
