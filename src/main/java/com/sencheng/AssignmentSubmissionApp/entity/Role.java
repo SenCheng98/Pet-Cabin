@@ -15,6 +15,6 @@ public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //indicate persistent provider must assign primary key
     private Long id;
-    private String roleName;
+    private String name;
 
 }

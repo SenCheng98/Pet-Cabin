@@ -1,4 +1,4 @@
-import "../../newCSS/app.css";
+
 
 const Nav2 = () => {
 

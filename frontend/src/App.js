@@ -1,8 +1,8 @@
 import logo from './logo.svg';
 // import './App.css';
-import { useEffect, useState} from 'react';
-import{useLocalStorage} from './util/useLocalStorage';
-import {Route, Routes } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useLocalStorage } from './util/useLocalStorage';
+import { Route, Routes } from 'react-router-dom';
 
 import Login from './pages/Login/index';
 import HomePage from './pages/Homepage/index';
@@ -15,6 +15,10 @@ import PetDetails from './pages/PetDetails/index';
 
 
 import getRolesFromJwt from './util/getRolesFromJwt';
+import ProductDetail from './pages/ImportProduct/ProductDetail';
+
+import Template from './components/Template/index'
+import Mainbody from './components/MainBody';
 
 
 
@@ -28,9 +32,9 @@ function App() {
   //A function that updates the state.
 
   //intial value is ""
-  const [jwt, setJwt] = useLocalStorage("jwt","");
+  const [jwt, setJwt] = useLocalStorage("jwt", "");
   const [roles, setRoles] = useState(getRolesFromJwt(jwt));
-  
+
 
   //通过使用useEffect钩子，您可以在函数组件中执行副作用逻辑，该逻辑在每次渲染时都会触发（默认情况下），或者在特定依赖项发生变化时触发。
   //useEffect(<function>, <dependency>)
@@ -39,30 +43,36 @@ function App() {
   }, []);  //when [sth] is not same as original value of sth, re-fetch
 
   //show on the interface
-  return(
-    <Routes>
-      <Route path='/' element={<HomePage/>}/>
-      <Route path='/login' element={<Login/>}/>
-      <Route path='/signup' element={<Signup/>}/>
-      <Route path='/petDetails/:id' element={<PetDetails/>}/>
+  return (
+    <Template>
 
-      <Route path='/dashboard' element={
-        <PrivateRoute> 
-          <Dashboard/>
-        </PrivateRoute>
-      }/> 
-      <Route path='/postAds' element={
-        <PrivateRoute> 
-          <PostAds/>
-        </PrivateRoute>
-      }/> 
-      <Route path='/petsView' element={
-        <PrivateRoute> 
-          <PetsView/>
-        </PrivateRoute>
-      }/> 
-      
-    </Routes>
+      <Routes>
+
+        <Route path='/' element={<Mainbody />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/signup' element={<Signup />} />
+        <Route path='/petDetails/:id' element={<PetDetails />} />
+        <Route path='/product' element={<ProductDetail />} />
+
+        <Route path='/dashboard' element={
+          <PrivateRoute>
+            <Dashboard />
+          </PrivateRoute>
+        } />
+        <Route path='/postAds' element={
+          <PrivateRoute>
+            <PostAds />
+          </PrivateRoute>
+        } />
+        <Route path='/petsView' element={
+          <PrivateRoute>
+            <PetsView />
+          </PrivateRoute>
+        } />
+
+      </Routes>
+    </Template>
+
   );
 
 

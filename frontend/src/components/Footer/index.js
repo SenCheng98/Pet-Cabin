@@ -1,33 +1,50 @@
+import { Link } from "react-router-dom";
 
-import "../../newCSS/app.css";
+
 
 const Footer = () => {
 
+    return (
+        <footer className="mt-auto py-5 bg-dark">
 
-    return(
-        <footer className="site-foot">
-        <div className="site-foot-nav container">
-            <div className="site-foot-nav-left">
-                {/* <Link to="/">site.title</Link> © 2021 &mdash; */}
-                Published with{" "}
-                <a
-                    className="site-foot-nav-item"
-                    href="https://ghost.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
+            <div className="container d-flex flex-column justify-content-sm-end ">
+                <h3 className="text-white fs-5">Copyright &copy; Sen Cheng</h3>
+                
+                <Link
+                    className="text-white fs-5"
+                    to = "https://github.com/SenCheng98/Pet-Cabin.git"
                 >
-                    Sen Cheng
-                </a>
+                    Github is here
+                </Link>
+
             </div>
-            <div className="site-foot-nav-right">
-                {/* <Navigation
-                    data={site.navigation}
-                    navClass="site-foot-nav-item"
-                /> */}
-            </div>
-        </div>
-    </footer>
-    )
+        </footer>
+    );
+
+    // return (
+    //     <footer className="site-foot">
+    //         <div className="site-foot-nav container">
+    //             <div className="site-foot-nav-left">
+    //                 {/* <Link to="/">site.title</Link> © 2021 &mdash; */}
+    //                 Published with{" "}
+    //                 <a
+    //                     className="site-foot-nav-item"
+    //                     href="https://ghost.org"
+    //                     target="_blank"
+    //                     rel="noopener noreferrer"
+    //                 >
+    //                     Sen Cheng
+    //                 </a>
+    //             </div>
+    //             <div className="site-foot-nav-right">
+    //                 {/* <Navigation
+    //                 data={site.navigation}
+    //                 navClass="site-foot-nav-item"
+    //             /> */}
+    //             </div>
+    //         </div>
+    //     </footer>
+    // )
 }
 
 export default Footer;

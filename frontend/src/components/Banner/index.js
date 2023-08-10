@@ -1,5 +1,5 @@
 
-import "../../newCSS/app.css";
+
 
 const Banner = () => {
 

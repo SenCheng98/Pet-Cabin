@@ -2,6 +2,8 @@ import { useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import ajaxService from '../../service/fetchService'
 
+import TemImage from '../../images/banner_73.jpg'
+
 const PetDetails = () => {
     const id = window.location.href.split("/petDetails/")[1]
     const [pet, setPet] = useState([])
@@ -33,7 +35,7 @@ const PetDetails = () => {
         {!loading && <div className="container">
             <div className="row my-5">
                 <div className="col-md-6 text-center">
-                    {/* <img src={pet.image} className=' h-575 w-75' alt='product' /> */}
+                    <img src={TemImage} className=' h-575 w-75' alt='product' />
                 </div>
                 <div className="col-md-6">
                     <h2>{pet.breed}</h2>

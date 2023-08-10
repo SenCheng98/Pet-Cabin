@@ -1,5 +1,5 @@
 import * as React from "react";
-import "../../newCSS/app.css";
+
 import Mainbody from "../../components/MainBody";
 import Nav1 from "../../components/Nav1";
 import Banner from "../../components/Banner";
@@ -29,10 +29,6 @@ const HomePage = () => {
                     <div className="container">
 
                         <div>
-                            <Nav1/>
-                        </div>
-
-                        <div>
                             <Banner/>
                         </div>
 
@@ -48,10 +44,6 @@ const HomePage = () => {
 
             </div>
 
-            <div className="viewport-bottom">
-                {/* The footer at the very bottom of the screen */}
-                <Footer/>
-            </div>
         </div>
     )
 };

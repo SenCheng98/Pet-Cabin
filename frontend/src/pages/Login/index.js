@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useLocalStorage } from "../../util/useLocalStorage";
 
 import './login.css';
-import '../../newCSS/app.css'
+
 import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import ajaxService from "../../service/fetchService";
 import { Button, Col, Form, Row } from "react-bootstrap";
@@ -57,7 +57,7 @@ const Login = () => {
 
         <div className="auth-wrapper">
             <div className="auth-inner">
-                <Form>
+                <Form >
                 <div style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>
                     <h1> Login </h1>
                 </div>
@@ -116,7 +116,7 @@ const Login = () => {
                     </p>
                 </Form>
             </div>
-        </div>
+         </div>
 
       )
 
