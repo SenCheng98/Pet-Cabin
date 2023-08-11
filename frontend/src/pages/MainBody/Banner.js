@@ -18,7 +18,7 @@ function BannerImage(props) {
   return (
     <div
       className={"carousel-item " + (props.active ? "active" : "")}
-      data-bs-interval="5000"
+      data-bs-interval="3000"
     >
       <div
         className="ratio"
@@ -40,11 +40,12 @@ function BannerImage(props) {
 
 function Banner() {
   return (
+
     <div
       id="bannerIndicators"
       className="carousel slide"
       data-bs-ride="carousel"
-      style={{ marginTop: "56px" }}
+      style={{ marginTop: "70px" }}
     >
       <div className="carousel-indicators">
         <BannerIncidator index="0" active={true} />
@@ -57,6 +58,7 @@ function Banner() {
         <BannerImage image={BannerTwo} />
       </div>
     </div>
+
   );
 }
 

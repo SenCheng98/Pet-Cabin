@@ -5,7 +5,6 @@ import { useLocalStorage } from './util/useLocalStorage';
 import { Route, Routes } from 'react-router-dom';
 
 import Login from './pages/Login/index';
-import HomePage from './pages/Homepage/index';
 import Dashboard from './pages/Dashboard/index';
 import PrivateRoute from './privateRoute/index';
 import PostAds from './pages/PostAds/index';
@@ -18,7 +17,7 @@ import getRolesFromJwt from './util/getRolesFromJwt';
 import ProductDetail from './pages/ImportProduct/ProductDetail';
 
 import Template from './components/Template/index'
-import Mainbody from './components/MainBody';
+import Mainbody from './pages/MainBody';
 
 
 
@@ -52,7 +51,7 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<Signup />} />
         <Route path='/petDetails/:id' element={<PetDetails />} />
-        <Route path='/product' element={<ProductDetail />} />
+        <Route path='/product/:id' element={<ProductDetail />} />
 
         <Route path='/dashboard' element={
           <PrivateRoute>

@@ -19,7 +19,7 @@ function ProductDetail() {
 
   function changeRating(newRating) {}
 
-  const id = window.location.href.split("/petDetails/")[1]
+  const id = window.location.href.split("/product/")[1]
   const [pet, setPet] = useState([])
   const [loading, setLoading] = useState(true)
 
@@ -44,21 +44,21 @@ function ProductDetail() {
         <ol className="breadcrumb p-3">
           <li className="breadcrumb-item">
             <Link className="text-decoration-none link-secondary" to="/products">
-              All Prodcuts
+              PetsView
             </Link>
           </li>
           <li className="breadcrumb-item">
             <a className="text-decoration-none link-secondary" href="!#">
-              Cases &amp; Covers
+              Dogs
             </a>
           </li>
           <li className="breadcrumb-item active" aria-current="page">
-            Nillkin iPhone X cover
+            {pet.breed}
           </li>
         </ol>
       </nav>
       <div className="row mb-4">
-        <div className="d-none d-lg-block col-lg-1">
+        {/* <div className="d-none d-lg-block col-lg-1">
           <div className="image-vertical-scroller">
             <div className="d-flex flex-column">
               {Array.from({ length: 10 }, (_, i) => {
@@ -75,7 +75,7 @@ function ProductDetail() {
               })}
             </div>
           </div>
-        </div>
+        </div> */}
         <div className="col-lg-6">
           <div className="row">
             <div className="col-12 mb-4">
@@ -87,7 +87,7 @@ function ProductDetail() {
             </div>
           </div>
 
-          {/* <div className="row mt-2">
+          <div className="row mt-2">
             <div className="col-12">
               <div
                 className="d-flex flex-nowrap"
@@ -108,13 +108,13 @@ function ProductDetail() {
                 })}
               </div>
             </div>
-          </div> */}
+          </div>
         </div>
 
         <div className="col-lg-5">
           <div className="d-flex flex-column h-100">
-            <h2 className="mb-1">Nillkin iPhone X cover</h2>
-            <h4 className="text-muted mb-4">10000 Ks</h4>
+            <h2 className="mb-1">{pet.breed}</h2>
+            <h4 className="text-muted mb-4">￡{pet.price}</h4>
 
             <div className="row g-3 mb-4">
               <div className="col">
