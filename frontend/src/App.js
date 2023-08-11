@@ -9,17 +9,11 @@ import Dashboard from './pages/Dashboard/index';
 import PrivateRoute from './privateRoute/index';
 import PostAds from './pages/PostAds/index';
 import Signup from './pages/Signup/index';
-import PetsView from './pages/PetsView/index';
-import PetDetails from './pages/PetDetails/index';
-
-
+import PetDetail from './pages/PetDetail/index'
 import getRolesFromJwt from './util/getRolesFromJwt';
-import ProductDetail from './pages/ImportProduct/ProductDetail';
-
 import Template from './components/Template/index'
 import Mainbody from './pages/MainBody';
-
-
+import PetList from './pages/PetList/index';
 
 
 function App() {
@@ -47,11 +41,12 @@ function App() {
 
       <Routes>
 
-        <Route path='/' element={<Mainbody />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/signup' element={<Signup />} />
-        <Route path='/petDetails/:id' element={<PetDetails />} />
-        <Route path='/product/:id' element={<ProductDetail />} />
+        <Route path='/' element={<Mainbody/>} />
+        <Route path='/login' element={<Login/>} />
+        <Route path='/signup' element={<Signup/>} />
+        <Route path='/petdetail/:id' element={<PetDetail/>} />
+        <Route path='/petlist' element={<PetList/>} />
+
 
         <Route path='/dashboard' element={
           <PrivateRoute>
@@ -63,12 +58,7 @@ function App() {
             <PostAds />
           </PrivateRoute>
         } />
-        <Route path='/petsView' element={
-          <PrivateRoute>
-            <PetsView />
-          </PrivateRoute>
-        } />
-
+      
       </Routes>
     </Template>
 

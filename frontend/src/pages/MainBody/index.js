@@ -40,8 +40,8 @@ const Mainbody = () => {
           eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </p>
         <div className="d-flex justify-content-center">
-          <Link to="/products" className="btn btn-primary" replace>
-            search your pets
+          <Link to="/petlist" className="btn btn-primary" replace>
+            Browse all pets : )
           </Link>
         </div>
       </div>
