@@ -26,7 +26,7 @@ const PetList = () => {
     function searchBaseOnKeyWord() {
 
         const keyword = document.getElementById("searchField").value
-
+        
         ajaxService(`api/pet/searchPets/${keyword}`, "get", null, null)
             .then((response) => {
                 console.log(response);

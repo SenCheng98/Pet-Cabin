@@ -23,7 +23,6 @@ const Login = () => {
             "password" : password,
         };
     
-        
         //hashmap, key + value
         fetch("api/auth/login",{
             headers: {
