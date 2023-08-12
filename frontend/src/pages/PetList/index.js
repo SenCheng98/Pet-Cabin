@@ -1,15 +1,12 @@
 import { useEffect, useState } from "react"
-import { useLocalStorage } from "../../util/useLocalStorage"
-import ajaxService from "../../service/fetchService"
-import { Container, Card, Row, Col } from "react-bootstrap"
-
-import TemporaryImg from "../../images/login-background.jpg"
-
 import { Link } from "react-router-dom";
 import Product from "./Product";
 import ProductH from "./ProductH";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ScrollToTopOnMount from "./ScrollToTopOnMount";
+import ajaxService from "../../service/fetchService";
+
+import Pagination from "../../components/Pagination/index";
 
 
 const categories = [
@@ -107,20 +104,6 @@ function FilterMenuLeft() {
 const PetList = () => {
 
 
-    const [jwt, setJwt] = useLocalStorage("jwt", "")
-    const [pets, setPets] = useState([]);
-    const [cardsPerRow, setCardsPerRow] = useState(3);
-
-
-    useEffect(() => {
-
-        ajaxService("api/pet", "get", null, jwt)
-            .then((response) => {
-                setPets(response);
-            });
-
-    }, []);
-
     const [viewType, setViewType] = useState({ grid: true });
 
     function changeViewType() {
@@ -128,6 +111,28 @@ const PetList = () => {
             grid: !viewType.grid,
         });
     }
+
+
+    const [pets, setPets] = useState([]);
+    const [petsNumber, setPetsNumber] = useState(0);
+
+    useEffect(() => {
+
+        ajaxService("api/pet/getAll", "get", null, null)
+            .then((response) => {
+                console.log(response);
+                setPets(response);
+                setPetsNumber(response.length)
+            });
+
+    }, []);
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const [postsPerPage, setPostPerPage] = useState(2);
+    const lastPostIndex = postsPerPage * currentPage;
+    const firstPostIndex = lastPostIndex - postsPerPage;
+    const currentPost = pets.slice(firstPostIndex, lastPostIndex);
+
 
     return (
         <div className="container mt-5 py-4 px-xl-5">
@@ -240,56 +245,17 @@ const PetList = () => {
                                 </button>
                             </div>
                         </div>
-                        <div
-                            className={
-                                "row row-cols-1 row-cols-md-2 row-cols-lg-2 g-3 mb-4 flex-shrink-0 " +
-                                (viewType.grid ? "row-cols-xl-3" : "row-cols-xl-2")
+                        <div>
+                            {
+                                (viewType.grid === true) ? (<Product petsData={currentPost} />)
+                                    : (<ProductH petsData={currentPost} />)
                             }
-                        >
-                            {Array.from({ length: 10 }, (_, i) => {
-                                if (viewType.grid) {
-                                    return (
-                                        <Product key={i} percentOff={i % 2 === 0 ? 15 : null} />
-                                    );
-                                }
-                                return (
-                                    <ProductH key={i} percentOff={i % 4 === 0 ? 15 : null} />
-                                );
-                            })}
-                        </div>
-                        <div className="d-flex align-items-center mt-auto">
-                            <span className="text-muted small d-none d-md-inline">
-                                Showing 10 of 100
-                            </span>
-                            <nav aria-label="Page navigation example" className="ms-auto">
-                                <ul className="pagination my-0">
-                                    <li className="page-item">
-                                        <a className="page-link" href="!#">
-                                            Previous
-                                        </a>
-                                    </li>
-                                    <li className="page-item">
-                                        <a className="page-link" href="!#">
-                                            1
-                                        </a>
-                                    </li>
-                                    <li className="page-item active">
-                                        <a className="page-link" href="!#">
-                                            2
-                                        </a>
-                                    </li>
-                                    <li className="page-item">
-                                        <a className="page-link" href="!#">
-                                            3
-                                        </a>
-                                    </li>
-                                    <li className="page-item">
-                                        <a className="page-link" href="!#">
-                                            Next
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>
+
+                            <Pagination
+                                totalPost={pets.length}
+                                postsPerPage={postsPerPage}
+                                setCurrentPage={setCurrentPage}
+                                currentPage={currentPage} />
                         </div>
                     </div>
                 </div>
@@ -297,29 +263,29 @@ const PetList = () => {
         </div>
     );
 
-    return (
+    // return (
 
-        <div style={{ margin: "2em" }}>
-            <div
-                className="d-grid gap-5"
-                style={{ gridTemplateColumns: "repeat(auto-fit, 45rem)" }}>
+    //     <div style={{ margin: "2em" }}>
+    //         <div
+    //             className="d-grid gap-5"
+    //             style={{ gridTemplateColumns: "repeat(auto-fit, 45rem)" }}>
 
-                {pets ? (pets.map((pet) => (
-                    <Card
-                        key={pet.id}
-                        style={{ width: '35rem' }}
-                        className="mx-auto">
-                        <Card.Img variant="top" src={TemporaryImg} />
-                        <Card.Body>
-                            <Card.Title>{pet.breed}</Card.Title>
-                            <Card.Text>{pet.price}</Card.Text>
-                            <Card.Text>{pet.description}</Card.Text>
-                        </Card.Body>
-                    </Card>
-                ))) : (<div></div>)}
-            </div>
-        </div>
-    );
+    //             {pets ? (pets.map((pet) => (
+    //                 <Card
+    //                     key={pet.id}
+    //                     style={{ width: '35rem' }}
+    //                     className="mx-auto">
+    //                     <Card.Img variant="top" src={TemporaryImg} />
+    //                     <Card.Body>
+    //                         <Card.Title>{pet.breed}</Card.Title>
+    //                         <Card.Text>{pet.price}</Card.Text>
+    //                         <Card.Text>{pet.description}</Card.Text>
+    //                     </Card.Body>
+    //                 </Card>
+    //             ))) : (<div></div>)}
+    //         </div>
+    //     </div>
+    // );
 }
 
 export default PetList;
