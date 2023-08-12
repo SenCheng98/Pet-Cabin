@@ -5,7 +5,6 @@ import { useLocalStorage } from './util/useLocalStorage';
 import { Route, Routes } from 'react-router-dom';
 
 import Login from './pages/Login/index';
-import Dashboard from './pages/Dashboard/index';
 import PrivateRoute from './privateRoute/index';
 import PostAds from './pages/PostAds/index';
 import Signup from './pages/Signup/index';
@@ -47,12 +46,6 @@ function App() {
         <Route path='/petdetail/:id' element={<PetDetail/>} />
         <Route path='/petlist' element={<PetList/>} />
 
-
-        <Route path='/dashboard' element={
-          <PrivateRoute>
-            <Dashboard />
-          </PrivateRoute>
-        } />
         <Route path='/postAds' element={
           <PrivateRoute>
             <PostAds />

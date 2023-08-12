@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -44,6 +45,12 @@ public class PetController {
 
         System.out.println("getting petDetails... id=" + id);
         Optional<Pet> pet = petService.findById(id);
+        return ResponseEntity.ok(pet);
+    }
+
+    @GetMapping("/searchPets/{keyword}")
+    public ResponseEntity<?> getPetsByKeyWord(@PathVariable String keyword){
+        List<Pet> pet = petService.findByKeyWord(keyword);
         return ResponseEntity.ok(pet);
     }
 }

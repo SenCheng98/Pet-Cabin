@@ -43,4 +43,9 @@ public class PetService {
     public Optional<Pet> findById(Long id){
         return petsRepo.findById(id);
     }
+
+    public List<Pet> findByKeyWord(String keyword){
+
+        return petsRepo.searchByKeyWord(keyword);
+    }
 }
