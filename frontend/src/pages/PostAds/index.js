@@ -6,7 +6,7 @@ import image from '../../images/banner_73.jpg'
 import { Paper, Typography } from '@mui/material';
 import { styled } from "@mui/system";
 import { useDropzone } from 'react-dropzone';
-import { Input } from 'postcss';
+import './dropzone.css'
 
 
 
@@ -48,27 +48,32 @@ const PostAds = () => {
 
     }
 
+    /*These are functions returned by the useDropzone hook 
+    that provide the necessary props to be spread onto the root element of the dropzone 
+    and the input element for handling user interactions.*/
+
     const [files, setFiles] = useState([]);
     const { getRootProps, getInputProps } = useDropzone({
         accept: 'image/*',
         onDrop: acceptedFiles => {
-            setFiles(acceptedFiles.map(file => Object.assign(file, {
+            const updatedFiles = acceptedFiles.map(file => Object.assign(file, {
                 preview: URL.createObjectURL(file)
-            })));
+            }));
+            // setFiles(updatedFiles);
+            setFiles(prevFiles => [...prevFiles, ...updatedFiles]);
         }
     });
 
+    const CustomPaper = styled(Paper)`
+        height: 200px;
+        background: #e8e8e8;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center; 
+    `;
 
-    const useStyles = styled(() => ({
-        dropZoneContainer: {
-            height: 300,
-            background: "#efefef",
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: "center",
-        },
-    }));
-    const classes = useStyles();
 
     return (
 
@@ -112,14 +117,24 @@ const PostAds = () => {
                     </div>
                     <div className="mb-3">
                         <label>Upload file</label>
-                        <Paper elevation={3}
-                            {...getRootProps()}
-                            className={classes.dropZoneContainer}
-                            variant="outlined">
+                        <Paper elevation={3} {...getRootProps()} className='dropzone-container'>
                             <input {...getInputProps()}></input>
-                            <Typography>
-                                Drag and drop some files here, or click to select files
-                            </Typography>
+                            {files.length > 0 ? (
+                                <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+                                    {files.map((file, index) => (
+                                        <img
+                                            key={index}
+                                            src={file.preview}
+                                            alt={`Preview ${index}`}
+                                            style={{ maxWidth: '100px', maxHeight: '100px', margin: '8px' }}
+                                        />
+                                    ))}
+                                </div>
+                            ) : (
+                                <Typography>
+                                    Drag and drop some image files here, or click to select image files
+                                </Typography>
+                            )}
                         </Paper>
                     </div>
 
