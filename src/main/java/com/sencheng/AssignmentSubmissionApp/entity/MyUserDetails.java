@@ -1,13 +1,17 @@
 package com.sencheng.AssignmentSubmissionApp.entity;
 
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
 
 public class MyUserDetails implements UserDetails {
 
@@ -16,6 +20,10 @@ public class MyUserDetails implements UserDetails {
 
     public MyUserDetails(User user){
         this.user = user;
+    }
+
+    public User getUser(){
+        return this.user;
     }
 
     @Override

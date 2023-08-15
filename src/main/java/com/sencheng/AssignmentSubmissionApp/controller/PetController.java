@@ -2,17 +2,22 @@ package com.sencheng.AssignmentSubmissionApp.controller;
 
 
 
+import com.sencheng.AssignmentSubmissionApp.entity.MyUserDetails;
 import com.sencheng.AssignmentSubmissionApp.entity.Pet;
 import com.sencheng.AssignmentSubmissionApp.entity.User;
 import com.sencheng.AssignmentSubmissionApp.service.PetService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 
 @RestController
@@ -22,17 +27,17 @@ public class PetController {
     @Autowired
     PetService petService;
 
-
     @PostMapping("/postAds")
-    public ResponseEntity<?> postPets(@RequestBody Pet pet, @AuthenticationPrincipal User user){
+    public ResponseEntity<?> postPets(@RequestBody Pet pet, @AuthenticationPrincipal MyUserDetails myUserDetails){
 
-        return ResponseEntity.ok(petService.addAPet(pet,user));
+        return ResponseEntity.ok(petService.addAPet(pet,myUserDetails.getUser()));
     }
 
     @GetMapping("")
-    public ResponseEntity<?> getPets(@AuthenticationPrincipal User user){
+    public ResponseEntity<Set<Pet>> getPets(@AuthenticationPrincipal MyUserDetails myUserDetails){
 
-        return ResponseEntity.ok(petService.findByUser(user));
+        return ResponseEntity.ok(petService.findByUser(myUserDetails.getUser()));
+
     }
     @GetMapping("/getAll")
     public ResponseEntity<?> getAllPets(){
@@ -53,4 +58,13 @@ public class PetController {
         List<Pet> pet = petService.findByKeyWord(keyword);
         return ResponseEntity.ok(pet);
     }
+
+
+    @GetMapping("/getByType/{type}")
+    public ResponseEntity<?> getByType(@PathVariable String type){
+
+        System.out.println("get in");
+        return ResponseEntity.ok(petService.findByType(type));
+    }
+
 }

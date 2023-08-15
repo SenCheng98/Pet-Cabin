@@ -7,11 +7,13 @@ import { Paper, Typography } from '@mui/material';
 import { styled } from "@mui/system";
 import { useDropzone } from 'react-dropzone';
 import './dropzone.css'
+import { type } from '@testing-library/user-event/dist/type';
 
 
 
 const PostAds = () => {
 
+    const [type, setType] = useState("");
     const [breed, setBreed] = useState("");
     const [price, setPrice] = useState("");
     const [description, setDescription] = useState("");
@@ -22,17 +24,17 @@ const PostAds = () => {
 
         //declare a variable, cannot be changed
         const reqBody = {
+            "type": type,
             "breed": breed,
             "price": price,
             "description": description,
-
         };
 
         ajaxService("api/pet/postAds", "post", reqBody, jwt)
             .then((response) => {
                 console.log(response);
                 if (response) {
-                    window.location.href = "/petsView";
+                    window.location.href = "/";
                 } else {
                     return Promise.reject("Please post again!");
 
@@ -82,6 +84,17 @@ const PostAds = () => {
 
                 <form>
                     <h3>Post a pet!</h3>
+
+                    <div className="mb-3">
+                        <label>type</label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            placeholder="enter dog/cat here"
+                            id='Type'
+                            value={type}
+                            onChange={(event) => setType(event.target.value)} />
+                    </div>
 
                     <div className="mb-3">
                         <label>breed</label>

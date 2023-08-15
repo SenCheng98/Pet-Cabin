@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom";
-import Product from "./Product";
-import ProductH from "./ProductH";
+import View1 from "./View1";
+import View2 from "./View2";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ScrollToTopOnMount from "./ScrollToTopOnMount";
 import ajaxService from "../../service/fetchService";
@@ -27,12 +27,22 @@ const PetList = () => {
 
         const keyword = document.getElementById("searchField").value
         
-        ajaxService(`api/pet/searchPets/${keyword}`, "get", null, null)
+        if(keyword){
+            ajaxService(`api/pet/searchPets/${keyword}`, "get", null, null)
             .then((response) => {
                 console.log(response);
                 setPets(response);
                 setPetsNumber(response.length)
             });
+        }else{
+            ajaxService("api/pet/getAll", "get", null, null)
+            .then((response) => {
+                console.log(response);
+                setPets(response);
+                setPetsNumber(response.length)
+            });
+        }
+    
     }
 
 
@@ -51,7 +61,7 @@ const PetList = () => {
     }, []);
 
     const [currentPage, setCurrentPage] = useState(1);
-    const [postsPerPage, setPostPerPage] = useState(2);
+    const [postsPerPage, setPostPerPage] = useState(6);
     const lastPostIndex = postsPerPage * currentPage;
     const firstPostIndex = lastPostIndex - postsPerPage;
     const currentPost = pets.slice(firstPostIndex, lastPostIndex);
@@ -70,9 +80,6 @@ const PetList = () => {
                         >
                             PetList
                         </Link>
-                    </li>
-                    <li className="breadcrumb-item active" aria-current="page">
-                        Dogs
                     </li>
                 </ol>
             </nav>
@@ -172,8 +179,8 @@ const PetList = () => {
                         </div>
                         <div>
                             {
-                                (viewType.grid === true) ? (<Product petsData={currentPost} />)
-                                    : (<ProductH petsData={currentPost} />)
+                                (viewType.grid === true) ? (<View1 petsData={currentPost} />)
+                                    : (<View2 petsData={currentPost} />)
                             }
 
                             <Pagination

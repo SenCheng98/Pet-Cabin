@@ -17,7 +17,7 @@ const iconPath =
 
 function PetDetail() {
 
-  function changeRating(newRating) {}
+  function changeRating(newRating) { }
 
   const id = window.location.href.split("/petdetail/")[1]
   const [pet, setPet] = useState([])
@@ -27,30 +27,38 @@ function PetDetail() {
 
   useEffect(() => {
 
-      ajaxService(`/api/pet/getPetDetails/${id}`, "get", null, null)
-          .then((data) => {
-              console.log(data);
-              setPet(data);
-              setLoading(false);
-          })
+    ajaxService(`/api/pet/getPetDetails/${id}`, "get", null, null)
+      .then((data) => {
+        console.log(data);
+        setPet(data);
+        setLoading(false);
+      })
 
   }, [])
 
 
   return (
     <div className="container mt-5 py-4 px-xl-5">
-      <ScrollToTopOnMount/>
+      <ScrollToTopOnMount />
       <nav aria-label="breadcrumb" className="bg-custom-light rounded mb-4">
         <ol className="breadcrumb p-3">
           <li className="breadcrumb-item">
-            <Link className="text-decoration-none link-secondary" to="/products">
-              PetsView
+            <Link className="text-decoration-none link-secondary" to="/petlist">
+              PetList
             </Link>
           </li>
           <li className="breadcrumb-item">
-            <a className="text-decoration-none link-secondary" href="!#">
-              Dogs
-            </a>
+            {
+              pet.type == "dog" ? (
+                <a className="text-decoration-none link-secondary" href="/dogsview">
+                  Dogs
+                </a>
+              ) : (
+                <a className="text-decoration-none link-secondary" href="/catsview">
+                  Cats
+                </a>
+              )
+            }
           </li>
           <li className="breadcrumb-item active" aria-current="page">
             {pet.breed}

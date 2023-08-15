@@ -16,6 +16,7 @@ public interface PetsRepo extends JpaRepository<Pet,Long> {
 
     @Query("SELECT p FROM Pet p WHERE p.breed LIKE %?1%")
     List<Pet> searchByKeyWord(String keyword);
+    List<Pet> findByType(String type);
 
-//
+
 }

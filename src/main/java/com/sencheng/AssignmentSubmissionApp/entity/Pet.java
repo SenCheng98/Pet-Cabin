@@ -2,6 +2,7 @@ package com.sencheng.AssignmentSubmissionApp.entity;
 
 
 import lombok.Data;
+import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -9,6 +10,7 @@ import java.util.Date;
 
 @Entity //will create table in database called assignment(based on Class name)
 @Data
+
 public class Pet {
 
     @Id
@@ -18,6 +20,7 @@ public class Pet {
     private String breed;
     private Integer price;
     private String description;
+    private String type;
     private String imageUrl;
     private String postedTime;
 

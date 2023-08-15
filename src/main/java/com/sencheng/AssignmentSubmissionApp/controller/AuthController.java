@@ -42,7 +42,7 @@ public class AuthController {
                             )
                     );
 
-            //User user = (User) authenticate.getPrincipal();
+//            User user = (User) authenticate.getPrincipal();
             MyUserDetails myUserDetails = (MyUserDetails) authenticate.getPrincipal();
 
             //return a token
@@ -50,18 +50,15 @@ public class AuthController {
                     .header(
                             HttpHeaders.AUTHORIZATION,
                             jwtUtil.generateToken(myUserDetails)
+                            //jwtUtil.generateToken(user)
                     )
                     .body(myUserDetails);
+                    //.body(user);
         } catch (BadCredentialsException ex) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
     }
 
-//    @PostMapping("/sign-up")
-//    public ResponseEntity<?> login(@RequestBody AuthCredentialsRequest request) {
-//
-//
-//    }
 
     @PostMapping("/sign-up")
     public Boolean signUp(@RequestBody User user){

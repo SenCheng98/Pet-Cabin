@@ -13,6 +13,8 @@ import getRolesFromJwt from './util/getRolesFromJwt';
 import Template from './components/Template/index'
 import Mainbody from './pages/MainBody';
 import PetList from './pages/PetList/index';
+import DogsView from './pages/PetList/dogsView';
+import CatsView from './pages/PetList/catsView';
 
 
 function App() {
@@ -45,6 +47,8 @@ function App() {
         <Route path='/signup' element={<Signup/>} />
         <Route path='/petdetail/:id' element={<PetDetail/>} />
         <Route path='/petlist' element={<PetList/>} />
+        <Route path='/dogsview' element={<DogsView />}/>
+        <Route path='/catsview' element={<CatsView />}/>
 
         <Route path='/postAds' element={
           <PrivateRoute>

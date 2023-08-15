@@ -2,11 +2,14 @@ import Image from "./nillkin-case.webp";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import ajaxService from "../../service/fetchService";
+import { useLocalStorage } from "../../util/useLocalStorage";
 
 function FeaturePets() {
 
   const [pets, setPets] = useState([]);
+  
   //const [cardsPerRow, setCardsPerRow] = useState(3);
+
 
   useEffect(() => {
 

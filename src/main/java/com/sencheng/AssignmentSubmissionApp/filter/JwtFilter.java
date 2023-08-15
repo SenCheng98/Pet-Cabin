@@ -49,7 +49,6 @@ public class JwtFilter extends OncePerRequestFilter {
             //get username from token
             username = jwtUtil.extractUsername(jwt);
 
-            System.out.println("get in");
         }
 
 
@@ -61,6 +60,8 @@ public class JwtFilter extends OncePerRequestFilter {
             //==============Authentication, verifies if you are who you say you are=============
             //if username searched with the token match to that in UserDetail
             if (jwtUtil.validateToken(jwt, userDetails)) {
+
+                System.out.println("has been validation");
 
                 UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
                         userDetails, null, userDetails.getAuthorities());

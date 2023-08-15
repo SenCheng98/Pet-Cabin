@@ -1,6 +1,7 @@
 package com.sencheng.AssignmentSubmissionApp.entity;
 
 import lombok.Data;
+import org.hibernate.annotations.Proxy;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,7 +13,8 @@ import java.util.*;
 @Entity
 @Table(name = "users")
 @Data
-public class User {
+
+public class User{
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY) //indicate persistent provider must assign primary key
     private Long id;
@@ -25,14 +27,12 @@ public class User {
     private LocalDate cohortStartDate;
 
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private Collection<Role> roles = new HashSet<>();
-
-
 
 }

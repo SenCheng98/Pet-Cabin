@@ -48,4 +48,8 @@ public class PetService {
 
         return petsRepo.searchByKeyWord(keyword);
     }
+
+    public List<Pet> findByType(String type){
+        return petsRepo.findByType(type);
+    }
 }
