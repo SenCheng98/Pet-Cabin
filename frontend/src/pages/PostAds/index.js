@@ -30,7 +30,7 @@ const PostAds = () => {
             "description": description,
         };
 
-        ajaxService("api/pet/postAds", "post", reqBody, jwt)
+        ajaxService("myServer/pet/postAds", "post", reqBody, jwt)
             .then((response) => {
                 console.log(response);
                 if (response) {

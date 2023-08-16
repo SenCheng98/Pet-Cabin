@@ -29,7 +29,7 @@ const DogsView = () => {
     setKeyword(document.getElementById("searchField").value);
 
     if (keyword) {
-      ajaxService(`api/pet/searchPets/${keyword}`, "get", null, null)
+      ajaxService(`/myServer/pet/searchPets/${keyword}`, "get", null, null)
         .then((response) => {
           console.log(response);
           setPets(response);

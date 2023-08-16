@@ -13,7 +13,7 @@ function FeaturePets() {
 
   useEffect(() => {
 
-    ajaxService("api/pet/getAll", "get", null, null)
+    ajaxService("/myServer/pet/getAll", "get", null, null)
       .then((response) => {
         console.log(response);
         setPets(response);

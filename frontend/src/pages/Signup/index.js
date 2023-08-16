@@ -28,7 +28,7 @@ const Signup = () => {
         };
     
         //hashmap, key + value
-        fetch("api/auth/sign-up",{
+        fetch("myServer/auth/sign-up",{
             headers: {
             "Content-Type" : "application/json",
             },

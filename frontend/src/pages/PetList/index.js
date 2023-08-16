@@ -28,14 +28,14 @@ const PetList = () => {
         const keyword = document.getElementById("searchField").value
         
         if(keyword){
-            ajaxService(`api/pet/searchPets/${keyword}`, "get", null, null)
+            ajaxService(`myServer/pet/searchPets/${keyword}`, "get", null, null)
             .then((response) => {
                 console.log(response);
                 setPets(response);
                 setPetsNumber(response.length)
             });
         }else{
-            ajaxService("api/pet/getAll", "get", null, null)
+            ajaxService("myServer/pet/getAll", "get", null, null)
             .then((response) => {
                 console.log(response);
                 setPets(response);
@@ -51,7 +51,7 @@ const PetList = () => {
 
     useEffect(() => {
 
-        ajaxService("api/pet/getAll", "get", null, null)
+        ajaxService("myServer/pet/getAll", "get", null, null)
             .then((response) => {
                 console.log(response);
                 setPets(response);

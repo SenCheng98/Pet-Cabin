@@ -27,7 +27,7 @@ function PetDetail() {
 
   useEffect(() => {
 
-    ajaxService(`/api/pet/getPetDetails/${id}`, "get", null, null)
+    ajaxService(`/myServer/pet/getPetDetails/${id}`, "get", null, null)
       .then((data) => {
         console.log(data);
         setPet(data);

@@ -18,7 +18,7 @@ const Mainbody = () => {
 
   useEffect(() => {
 
-    ajaxService("api/pet/getAll", "get", null, null)
+    ajaxService("/local/pet/getAll", "get", null, null)
       .then((response) => {
         setPets(response);
       });

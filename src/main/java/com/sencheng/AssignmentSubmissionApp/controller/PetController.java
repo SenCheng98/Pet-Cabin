@@ -21,7 +21,7 @@ import java.util.Set;
 
 
 @RestController
-@RequestMapping("/api/pet")
+@RequestMapping("/myServer/pet")
 public class PetController {
 
     @Autowired
@@ -42,6 +42,7 @@ public class PetController {
     @GetMapping("/getAll")
     public ResponseEntity<?> getAllPets(){
 
+        System.out.println("get in...");
         return ResponseEntity.ok(petService.findAll());
     }
 
