@@ -6,7 +6,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 
 @DataJpaTest
-class PetsRepoTest {
+public class PetsRepoTest {
 
     @Autowired
     private PetsRepo undertest;

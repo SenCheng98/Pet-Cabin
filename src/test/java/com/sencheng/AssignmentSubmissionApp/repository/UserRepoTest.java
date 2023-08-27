@@ -10,7 +10,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
-class UserRepoTest {
+public class UserRepoTest {
 
     @Autowired
     private UserRepo undertest;
@@ -33,7 +33,8 @@ class UserRepoTest {
         User savedUser = undertest.save(user);
         assertNotNull(savedUser); // Assert that the savedUser is not null
         assertNotNull(savedUser.getId()); // Assuming User has an ID field, assert that it's generated and not null
-        assertEquals("Test1", savedUser.getUsername()); // Assert username matches
+        assertEquals("Test1" +
+                "", savedUser.getUsername()); // Assert username matches
         assertEquals("G20 6BS", savedUser.getPostcode()); // Assert postcode matches
         assertEquals("123", savedUser.getPhone()); // Assert phone number matches
     }

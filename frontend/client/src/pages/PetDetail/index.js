@@ -3,6 +3,7 @@ import RelatedProduct from "./RelatedProduct";
 import Ratings from "react-ratings-declarative";
 import { Link, useNavigate } from "react-router-dom";
 import ScrollToTopOnMount from "./ScrollToTopOnMount";
+import { useLocalStorage } from "../../util/useLocalStorage";
 
 
 import { useEffect, useState } from 'react'
@@ -20,6 +21,10 @@ function PetDetail() {
   const [pet, setPet] = useState([])
   const [loading, setLoading] = useState(true)
 
+  const [jwt, setJwt] = useLocalStorage("jwt", "");
+
+  const [applyStatus, setApplyStatus] = useState(0);
+
   //console.log(id)
 
   useEffect(() => {
@@ -30,12 +35,25 @@ function PetDetail() {
         setPet(data);
         setLoading(false);
       })
+    if (jwt) {
+      ajaxService(`/myServer/apply/getstatus/${id}`, "get", null, jwt)
+        .then((status) => {
+          console.log(status);
+          setApplyStatus(status);
+        })
+    }
 
   }, [])
 
-  let navigate = useNavigate(); 
-  const goToPayment = () =>{ 
-    let path = `/payment`; 
+
+  let navigate = useNavigate();
+  const goToPayment = () => {
+    let path = `/payment`;
+    navigate(path);
+  }
+
+  const goToApply = () => {
+    let path = `/apply/${pet.id}`;
     navigate(path);
   }
 
@@ -133,9 +151,27 @@ function PetDetail() {
                   Add to cart
                 </button>
               </div>
-              <div className="col">
+              {
+                applyStatus === 0 ? (
+                  <div className="col">
+                  <button className="btn btn-dark py-2 w-100" onClick={goToApply}>Apply</button>
+                </div>
+                ) : (applyStatus === 1 ? (
+                  <div className="col">
+                  <button className="btn btn-dark py-2 w-100" >Being approved</button>
+                </div>
+                ) : (
+                  <div className="col">
+                  <button className="btn btn-dark py-2 w-100" onClick={goToPayment}>Buy now</button>
+                </div>
+                ))
+              }
+              {/* <div className="col">
                 <button className="btn btn-dark py-2 w-100" onClick={goToPayment}>Buy now</button>
               </div>
+              <div className="col">
+                <button className="btn btn-dark py-2 w-100" onClick={goToApply}>Apply</button>
+              </div> */}
             </div>
 
             <h4 className="mb-0">Details</h4>

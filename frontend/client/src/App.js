@@ -16,6 +16,7 @@ import PetList from './pages/PetList/index';
 import DogsView from './pages/PetList/dogsView';
 import CatsView from './pages/PetList/catsView';
 import Payment from './pages/Payment/Payment';
+import Application from './pages/Application';
 
 
 function App() {
@@ -43,21 +44,26 @@ function App() {
 
       <Routes>
 
-        <Route path='/' element={<Mainbody/>} />
-        <Route path='/login' element={<Login/>} />
-        <Route path='/signup' element={<Signup/>} />
-        <Route path='/petdetail/:id' element={<PetDetail/>} />
-        <Route path='/petlist' element={<PetList/>} />
-        <Route path='/dogsview' element={<DogsView />}/>
-        <Route path='/catsview' element={<CatsView />}/>
-        <Route path='/payment' element={<Payment/>}/>
+        <Route path='/' element={<Mainbody />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/signup' element={<Signup />} />
+        <Route path='/petdetail/:id' element={<PetDetail />} />
+        <Route path='/petlist' element={<PetList />} />
+        <Route path='/dogsview' element={<DogsView />} />
+        <Route path='/catsview' element={<CatsView />} />
+        <Route path='/payment' element={<Payment />} />
 
         <Route path='/postAds' element={
           <PrivateRoute>
             <PostAds />
           </PrivateRoute>
         } />
-      
+        <Route path='/apply/:id' element={
+          <PrivateRoute>
+            <Application />
+          </PrivateRoute>
+        } />
+
       </Routes>
     </Template>
 

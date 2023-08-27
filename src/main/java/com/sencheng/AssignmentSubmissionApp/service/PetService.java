@@ -3,6 +3,7 @@ package com.sencheng.AssignmentSubmissionApp.service;
 import com.sencheng.AssignmentSubmissionApp.entity.Pet;
 import com.sencheng.AssignmentSubmissionApp.entity.User;
 import com.sencheng.AssignmentSubmissionApp.repository.PetsRepo;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+@AllArgsConstructor
 @Service
 public class PetService {
 
