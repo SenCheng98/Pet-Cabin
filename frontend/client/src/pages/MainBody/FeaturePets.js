@@ -33,7 +33,7 @@ function FeaturePets() {
                   className="card-img-top bg-dark cover"
                   height="240"
                   alt=""
-                  src={Image}
+                  src={require(`../../images/${pet.breed}.jpg`)} 
                 />
                 <div className="card-body">
                   <h5 className="card-title text-center">{pet.breed}</h5>

@@ -111,7 +111,7 @@ function PetDetail() {
               <img
                 className="border rounded ratio ratio-1x1"
                 alt=""
-                src={Image}
+                src={require(`../../images/${pet.breed}.jpg`)}
               />
             </div>
           </div>
@@ -123,6 +123,7 @@ function PetDetail() {
                 style={{ overflowX: "scroll" }}
               >
                 {Array.from({ length: 8 }, (_, i) => {
+                  const imageName = `bulldog_${i + 1}.jpg`;
                   return (
                     <a key={i} href="!#">
                       <img
@@ -130,7 +131,7 @@ function PetDetail() {
                         width="70"
                         height="70"
                         alt=""
-                        src={Image}
+                        src={require(`../../images/bulldogs/${imageName}`)}
                       />
                     </a>
                   );
