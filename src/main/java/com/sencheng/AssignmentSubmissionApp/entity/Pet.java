@@ -19,6 +19,7 @@ public class Pet {
     private String AdvertStatus;
     private String breed;
     private Integer price;
+    private String name;
     private String description;
     private String type;
     private String imageUrl;

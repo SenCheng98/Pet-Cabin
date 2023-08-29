@@ -4,7 +4,7 @@ import Ratings from "react-ratings-declarative";
 import { Link, useNavigate } from "react-router-dom";
 import ScrollToTopOnMount from "./ScrollToTopOnMount";
 import { useLocalStorage } from "../../util/useLocalStorage";
-
+import xddd from "../../images/ChowChow.jpg"
 
 import { useEffect, useState } from 'react'
 import ajaxService from '../../service/fetchService'
@@ -42,6 +42,8 @@ function PetDetail() {
           setApplyStatus(status);
         })
     }
+    console.log("Breed" + pet.breed)
+
 
   }, [])
 
@@ -108,11 +110,16 @@ function PetDetail() {
         <div className="col-lg-6">
           <div className="row">
             <div className="col-12 mb-4">
-              <img
-                className="border rounded ratio ratio-1x1"
-                alt=""
-                src={require(`../../images/${pet.breed}.jpg`)}
-              />
+              {
+                pet.breed && (
+                  <img
+                    className="border rounded ratio ratio-1x1"
+                    alt=""
+                    src={require(`../../images/${pet.breed}.jpg`)}
+                  />
+                )
+              }
+
             </div>
           </div>
 
@@ -122,20 +129,24 @@ function PetDetail() {
                 className="d-flex flex-nowrap"
                 style={{ overflowX: "scroll" }}
               >
-                {Array.from({ length: 8 }, (_, i) => {
-                  const imageName = `bulldog_${i + 1}.jpg`;
-                  return (
-                    <a key={i} href="!#">
-                      <img
-                        className="cover rounded mb-2 me-2"
-                        width="70"
-                        height="70"
-                        alt=""
-                        src={require(`../../images/bulldogs/${imageName}`)}
-                      />
-                    </a>
-                  );
-                })}
+                {
+                  pet.breed && (
+                    Array.from({ length: 3 }, (_, i) => {
+                      const imageName = `${pet.breed}${i + 1}.jpg`;
+
+                      return (
+                        <a key={i} href="!#">
+                          <img
+                            className="cover rounded mb-2 me-2"
+                            width="70"
+                            height="70"
+                            alt=""
+                            src={require(`../../images/${pet.breed}/${imageName}`)}
+                          />
+                        </a>
+                      );
+                    })
+                  )}
               </div>
             </div>
           </div>
@@ -143,7 +154,7 @@ function PetDetail() {
 
         <div className="col-lg-5">
           <div className="d-flex flex-column h-100">
-            <h2 className="mb-1">{pet.breed}</h2>
+            <h2 className="mb-1">{pet.name}</h2>
             <h4 className="text-muted mb-4">￡{pet.price}</h4>
 
             <div className="row g-3 mb-4">
@@ -155,16 +166,16 @@ function PetDetail() {
               {
                 applyStatus === 0 ? (
                   <div className="col">
-                  <button className="btn btn-dark py-2 w-100" onClick={goToApply}>Apply</button>
-                </div>
+                    <button className="btn btn-dark py-2 w-100" onClick={goToApply}>Apply</button>
+                  </div>
                 ) : (applyStatus === 1 ? (
                   <div className="col">
-                  <button className="btn btn-dark py-2 w-100" >Being approved</button>
-                </div>
+                    <button className="btn btn-dark py-2 w-100" >Being approved</button>
+                  </div>
                 ) : (
                   <div className="col">
-                  <button className="btn btn-dark py-2 w-100" onClick={goToPayment}>Buy now</button>
-                </div>
+                    <button className="btn btn-dark py-2 w-100" onClick={goToPayment}>Buy now</button>
+                  </div>
                 ))
               }
               {/* <div className="col">
@@ -178,23 +189,18 @@ function PetDetail() {
             <h4 className="mb-0">Details</h4>
             <hr />
             <dl className="row">
-              <dt className="col-sm-4">Code</dt>
-              <dd className="col-sm-8 mb-">C0001</dd>
-
-              <dt className="col-sm-4">Category</dt>
-              <dd className="col-sm-8 mb-3">Cases & Covers</dd>
-
-              <dt className="col-sm-4">Brand</dt>
-              <dd className="col-sm-8 mb-3">iPhone X</dd>
-
-              <dt className="col-sm-4">Manufacturer</dt>
-              <dd className="col-sm-8 mb-3">Nillkin</dd>
-
-              <dt className="col-sm-4">Color</dt>
-              <dd className="col-sm-8 mb-3">Red, Green, Blue, Pink</dd>
+              <dt className="col-sm-4">Breed</dt>
+              <dd className="col-sm-8 mb-">{pet.breed}</dd>
 
               <dt className="col-sm-4">Status</dt>
-              <dd className="col-sm-8 mb-3">Instock</dd>
+              <dd className="col-sm-8 mb-3">{pet.advertStatus}</dd>
+
+              <dt className="col-sm-4">postedTime</dt>
+              <dd className="col-sm-8 mb-3">{pet.postedTime}</dd>
+
+              <dt className="col-sm-4">Color</dt>
+              <dd className="col-sm-8 mb-3">Yellow, White</dd>
+
 
               <dt className="col-sm-4">Rating</dt>
               <dd className="col-sm-8 mb-3">
@@ -219,39 +225,22 @@ function PetDetail() {
               </dd>
             </dl>
 
-            <h4 className="mb-0">Description</h4>
+            <h4 className="mb-0">About {pet.name}</h4>
             <hr />
             <p className="lead flex-shrink-0">
               <small>
-                Nature (TPU case) use environmental non-toxic TPU, silky smooth
-                and ultrathin. Glittering and translucent, arbitrary rue
-                reserved volume button cutouts, easy to operate. Side frosted
-                texture anti-slipping, details show its concern; transparent
-                frosted logo shows its taste. The release of self, the flavor of
-                life. Nillkin launched Nature transparent soft cover, only to
-                retain the original phone style. Subverting tradition,
-                redefinition. Thinner design Environmental texture better hand
-                feeling.
+                {pet.description}
               </small>
             </p>
           </div>
         </div>
       </div>
 
-      <div className="row">
-        <div className="col-md-12 mb-4">
-          <hr />
-          <h4 className="text-muted my-4">Related products</h4>
-          <div className="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-3">
-            {Array.from({ length: 4 }, (_, i) => {
-              return (
-                <RelatedProduct key={i} percentOff={i % 2 === 0 ? 15 : null} />
-              );
-            })}
-          </div>
-        </div>
-      </div>
+      <hr />
+      <h4 className="text-muted my-4">Related pets</h4>
+      <RelatedProduct />
     </div>
+
   );
 }
 

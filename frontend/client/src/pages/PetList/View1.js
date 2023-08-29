@@ -14,12 +14,15 @@ function Product({petsData}) {
           <div className="col">
             <div className="card shadow-sm">
               <Link to={`/petdetail/${pet.id}`} href="!#" replace>
-                <img
-                  className="card-img-top bg-dark cover"
-                  height="200"
-                  alt=""
-                  src={Image}
-                />
+              {
+                pet.breed && (
+                  <img
+                    className="border rounded ratio ratio-1x1"
+                    alt=""
+                    src={require(`../../images/${pet.breed}.jpg`)}
+                  />
+                )
+              }
               </Link>
               <div className="card-body">
                 <h5 className="card-title text-center text-dark text-truncate">

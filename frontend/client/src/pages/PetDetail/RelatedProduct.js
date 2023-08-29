@@ -1,52 +1,60 @@
 import Image from "./nillkin-case-1.jpg";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import ajaxService from "../../service/fetchService";
 
-function RelatedProduct(props) {
-  const price = 10000;
-  let percentOff;
-  let offPrice = `${price}Ks`;
+function RelatedProduct() {
 
-  if (props.percentOff && props.percentOff > 0) {
-    percentOff = (
-      <div
-        className="badge bg-dim py-2 text-white position-absolute"
-        style={{ top: "0.5rem", right: "0.5rem" }}
-      >
-        {props.percentOff}% OFF
-      </div>
-    );
 
-    offPrice = (
-      <>
-        <del>{price}Ks</del> {price - (props.percentOff * price) / 100}Ks
-      </>
-    );
-  }
+  const [pets, setPets] = useState([]);
+
+  useEffect(() => {
+
+    ajaxService("/myServer/pet/getAll", "get", null, null)
+      .then((response) => {
+        console.log(response);
+        setPets(response);
+      });
+
+  }, []);
+
 
   return (
-    <Link
-      to="/products/1"
-      className="col text-decoration-none"
-      href="!#"
-      replace
-    >
-      <div className="card shadow-sm">
-        {percentOff}
-        <img
-          className="card-img-top bg-dark cover"
-          height="200"
-          alt=""
-          src={Image}
-        />
-        <div className="card-body">
-          <h5 className="card-title text-center text-dark text-truncate">
-            Nillkin iPhone X cover
-          </h5>
-          <p className="card-text text-center text-muted">{offPrice}</p>
-        </div>
+    <div className="container pb-5 px-lg-5">
+      <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 px-md-5">
+        {
+          pets ? (pets.slice(0, 3).map((pet) => (
+            <div className="col">
+              <div key={pet.id} className="card shadow-sm" >
+                {
+                  pet.breed && (
+                    <img
+                      className="card-img-top bg-dark cover"
+                      height="240"
+                      alt=""
+                      src={require(`../../images/${pet.breed}.jpg`)}
+                    />
+                  )
+                }
+
+                <div className="card-body">
+                  <h5 className="card-title text-center">{pet.breed}</h5>
+                  <p className="card-text text-center text-muted">￡{pet.price}</p>
+                  <div className="d-grid gap-2">
+                    <Link to={`/petdetail/${pet.id}`} className="btn btn-outline-dark" replace>
+                      Detail
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          ))) : (<div></div>)
+        }
       </div>
-    </Link>
+    </div>
   );
+
 }
 
 export default RelatedProduct;

@@ -18,11 +18,11 @@ function BannerImage(props) {
   return (
     <div
       className={"carousel-item " + (props.active ? "active" : "")}
-      data-bs-interval="3000"
+      data-bs-interval="1800"
     >
       <div
         className="ratio"
-        style={{ "--bs-aspect-ratio": "50%", maxHeight: "460px" }}
+        style={{ "--bs-aspect-ratio": "50%", maxHeight: "600px" }}
       >
         <img
           className="d-block w-100 h-100 bg-dark cover"
@@ -31,8 +31,8 @@ function BannerImage(props) {
         />
       </div>
       <div className="carousel-caption d-none d-lg-block">
-        <h5>Banner Header</h5>
-        <p>Some representative placeholder content for the banner.</p>
+        <h5>Welcome to PetCabin!</h5>
+        <p>Pets are waiting for your adoption!</p>
       </div>
     </div>
   );
