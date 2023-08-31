@@ -115,7 +115,7 @@ const PetList = () => {
                                     aria-expanded="false"
                                     aria-controls="collapseFilter"
                                 >
-                                    Filter Products
+                                    Filter Pets
                                 </button>
                             </h2>
                         </div>
@@ -147,10 +147,9 @@ const PetList = () => {
                                     aria-label="Default select example"
                                     defaultValue=""
                                 >
-                                    <option value="">All Models</option>
-                                    <option value="1">iPhone X</option>
-                                    <option value="2">iPhone Xs</option>
-                                    <option value="3">iPhone 11</option>
+                                    <option value="">Dogs or Cats</option>
+                                    <option value="1">dogs</option>
+                                    <option value="2">cats</option>
                                 </select>
                             </div>
                             <div className="col-lg-9 col-xl-5 offset-xl-4 d-flex flex-row">
@@ -159,7 +158,7 @@ const PetList = () => {
                                         id="searchField"
                                         className="form-control"
                                         type="text"
-                                        placeholder="Search products..."
+                                        placeholder="Search pets..."
                                         aria-label="search input"
                                     />
                                     <button className="btn btn-outline-dark"

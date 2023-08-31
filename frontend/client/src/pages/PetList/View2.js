@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react"
 import ajaxService from "../../service/fetchService";
 
-function ProductH({petsData}) {
+function ProductH({ petsData }) {
 
   return (
 
@@ -16,11 +16,16 @@ function ProductH({petsData}) {
               <div className="row g-0">
                 <div className="col-4">
                   <Link to={`/petdetail/${pet.id}`} replace>
-                    <img
-                      className="rounded-start bg-dark cover w-100 h-100"
-                      alt=""
-                      src={Image}
-                    />
+                    {
+                      pet.breed && (
+                        <img
+                          className="rounded-start bg-dark cover w-100 h-100"
+                          alt=""
+                          src={require(`../../images/${pet.breed}.jpg`)}
+                        />
+                      )
+                    }
+
                   </Link>
                 </div>
                 <div className="col-8">

@@ -14,17 +14,17 @@ function FilterMenuLeft() {
     "Power Banks",
   ];
   
-  const brands = ["Apple", "Samsung", "Google", "HTC"];
+  const breeds = ["German Shepherd Dog", "Bulldog", "Dachshund", "Long Hair"];
   
-  const manufacturers = ["HOCO", "Nillkin", "Remax", "Baseus"];
+  const types = ["Cat", "Dog", "Others"];
 
   
   return (
       <ul className="list-group list-group-flush rounded">
           <li className="list-group-item d-none d-lg-block">
-              <h5 className="mt-1 mb-2">Browse</h5>
+              <h5 className="mt-1 mb-2">Types</h5>
               <div className="d-flex flex-wrap my-2">
-                  {categories.map((v, i) => {
+                  {types.map((v, i) => {
                       return (
                           <Link
                               key={i}
@@ -39,9 +39,9 @@ function FilterMenuLeft() {
               </div>
           </li>
           <li className="list-group-item">
-              <h5 className="mt-1 mb-1">Brands</h5>
+              <h5 className="mt-1 mb-1">Breeds</h5>
               <div className="d-flex flex-column">
-                  {brands.map((v, i) => {
+                  {breeds.map((v, i) => {
                       return (
                           <div key={i} className="form-check">
                               <input className="form-check-input" type="checkbox" />
@@ -53,21 +53,7 @@ function FilterMenuLeft() {
                   })}
               </div>
           </li>
-          <li className="list-group-item">
-              <h5 className="mt-1 mb-1">Manufacturers</h5>
-              <div className="d-flex flex-column">
-                  {manufacturers.map((v, i) => {
-                      return (
-                          <div key={i} className="form-check">
-                              <input className="form-check-input" type="checkbox" />
-                              <label className="form-check-label" htmlFor="flexCheckDefault">
-                                  {v}
-                              </label>
-                          </div>
-                      );
-                  })}
-              </div>
-          </li>
+
           <li className="list-group-item">
               <h5 className="mt-1 mb-2">Price Range</h5>
               <div className="d-grid d-block mb-3">
@@ -76,7 +62,7 @@ function FilterMenuLeft() {
                           type="text"
                           className="form-control"
                           placeholder="Min"
-                          defaultValue="100000"
+                          defaultValue="500"
                       />
                       <label htmlFor="floatingInput">Min Price</label>
                   </div>
@@ -85,7 +71,7 @@ function FilterMenuLeft() {
                           type="text"
                           className="form-control"
                           placeholder="Max"
-                          defaultValue="500000"
+                          defaultValue="1500"
                       />
                       <label htmlFor="floatingInput">Max Price</label>
                   </div>

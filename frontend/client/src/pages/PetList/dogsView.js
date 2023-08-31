@@ -117,7 +117,7 @@ const DogsView = () => {
                   aria-expanded="false"
                   aria-controls="collapseFilter"
                 >
-                  Filter Products
+                  Filter Pets
                 </button>
               </h2>
             </div>
@@ -149,10 +149,10 @@ const DogsView = () => {
                   aria-label="Default select example"
                   defaultValue=""
                 >
-                  <option value="">All Models</option>
-                  <option value="1">iPhone X</option>
-                  <option value="2">iPhone Xs</option>
-                  <option value="3">iPhone 11</option>
+                  <option value="">All Dogs</option>
+                  <option value="1">small</option>
+                  <option value="2">medium</option>
+                  <option value="3">large</option>
                 </select>
               </div>
               <div className="col-lg-9 col-xl-5 offset-xl-4 d-flex flex-row">
@@ -161,7 +161,7 @@ const DogsView = () => {
                     id="searchField"
                     className="form-control"
                     type="text"
-                    placeholder="Search products..."
+                    placeholder="Search pets..."
                     aria-label="search input"
                   />
                   <button className="btn btn-outline-dark"
